@@ -9,7 +9,7 @@ This folder is a **copy** of the canonical user skill for version control in thi
 Canonical source in this repository: **`ow-cursor-config/skills/cursor-workflow-review/`**. Example:
 
 ```bash
-cp -a /path/to/cursor-config-generic/ow-cursor-config/skills/cursor-workflow-review/ "$HOME/.cursor/skills/cursor-workflow-review/"
+cp -a /path/to/ow-cursor-config/skills/cursor-workflow-review/ "$HOME/.cursor/skills/cursor-workflow-review/"
 ```
 
 Then Cursor can load `SKILL.md` from that path.

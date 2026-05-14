@@ -30,7 +30,7 @@ Examples (adapt tokens):
 
 ## Topic synthesis files
 
-Each topic under `exploration/topics/<slug>/` uses:
+Each topic under `<docs-dir>/topics/<slug>/` uses:
 
 - **`info.md`** — short, scannable overview (index-friendly).
 - **`deepdive.md`** — room for mechanics, implementation steps, research backing, and sourced sentiment.
@@ -80,7 +80,7 @@ Each topic under `exploration/topics/<slug>/` uses:
 - **Use cases for us:** When this hub should use, pilot, teach, or operationalize (including ML workflows, not only editor config).
 - **Other use cases:** Legitimate uses outside this hub.
 - **Strengths / Weaknesses:** Balanced, evidence-backed bullets; cite `SRC-###` when the audit trail matters.
-- **Future Outlook:** Trajectory, what would change the recommendation, open questions, and gaps vs `exploration/`, `docs/`, or `ow-cursor-config/` when relevant.
+- **Future Outlook:** Trajectory, what would change the recommendation, open questions, and gaps vs other areas of the docs directory when relevant.
 
 ### `deepdive.md`
 

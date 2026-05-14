@@ -3,7 +3,7 @@ name: cursor-convert-ui-rules
 description: >-
   Splits pasted Cursor Settings "User Rules" text (blocks separated by horizontal bar
   lines) into separate `.mdc` rule files with YAML frontmatter aligned to the
-  cursor-config-generic migration template. Use when the user manually invokes
+  ow-cursor-config migration template. Use when the user manually invokes
   cursor-convert-ui-rules after pasting UI rules, multiple rules in one paste, or when
   migrating Settings-only prose into file-backed rules.
 disable-model-invocation: true

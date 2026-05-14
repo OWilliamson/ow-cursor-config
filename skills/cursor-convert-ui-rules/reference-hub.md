@@ -1,6 +1,6 @@
 # Convert UI rules — hub paths and emit rules
 
-Authoritative docs and templates live in the **cursor-config-generic** repository that contains `ow-cursor-config/skills/cursor-convert-ui-rules/` (adjust if the hub moves).
+Authoritative docs and templates live in the **ow-cursor-config** repository that contains `skills/cursor-convert-ui-rules/` (adjust if the hub moves).
 
 ## Hub paths (from repository root)
 
