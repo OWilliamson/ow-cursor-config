@@ -1,0 +1,91 @@
+# =============================================================================
+# Agent retro meter — configuration (YAML)
+# =============================================================================
+#
+# WHAT THIS FILE CONTROLS
+# ------------------------
+# Cursor runs a small script (meter.py) on each Agent chat hook. It measures
+# how "heavy" a turn was, and optionally writes a log line and/or injects a
+# short follow-up message (a "nudge") suggesting you run a session retro.
+#
+# KEY TERMS (read this first)
+# ---------------------------
+# • "Composer" — the main Cursor Agent chat you type into (not a background Task).
+#
+# • "One turn" / "generation" — you send one message; the agent may call many
+#   tools (read files, run shell, search, etc.) and then replies. When that reply
+#   finishes, the turn is over. Thresholds apply per turn.
+#
+# • "Tools" (composer.min_tools) — NOT your physical keyboard tools. It means:
+#   how many times the agent invoked a Cursor tool in that turn (each Read,
+#   Write, Shell, Grep, MCP call, etc. counts as one). High numbers usually mean
+#   a long or exploratory agent session. Set min_tools to fire when a turn had
+#   "at least this many tool calls". 0 = do not use this rule.
+#
+# • "Wall time" (composer.min_wall_ms) — real-world milliseconds from when you
+#   pressed Send on your message until the agent finished that turn. Catches
+#   slow runs even if tool count is low. 0 = do not use this rule.
+#
+# • "Threshold" — limits you set on tool count and/or wall time. By default the
+#   meter uses OR logic (either limit can trigger). Set composer.require_both
+#   to true to use AND logic (both limits must be crossed)—much quieter on
+#   tool-heavy but short plan-style turns.
+#
+# • "Nudge" (composer.nudge) — if true, Cursor may automatically send an extra
+#   user message after the turn (suggesting @cursor-session-retro). If false,
+#   you still get the JSON log line when thresholds fire, but no auto message.
+#
+# • "require_both" (composer.require_both) — if true, BOTH min_tools and
+#   min_wall_ms must be crossed (AND). Helps when Cursor plan builds rack up
+#   tool calls but finish under your wall-time budget. Ignored if either limit is 0.
+#
+# • "Subagent" — when the agent spawns a Task sub-agent (explore/shell/etc.),
+#   separate thresholds in subagent.* can log (and rarely nudge) based on that
+#   sub-agent's own tool_call_count and duration_ms from Cursor.
+#
+# Dependency: PyYAML (see requirements.txt in this folder).
+#   pip install --user -r ~/.cursor/hooks/agent-retro-meter/requirements.txt
+#
+# Optional: different config file path (only env var supported):
+#   export AGENT_RETRO_CONFIG=/path/to/my-retro-config.yaml
+#
+# ---------------------------------------------------------------------------
+# paths.log — append-only JSONL log (created on first write)
+# paths.state — internal file for dedup + counters (safe to delete if corrupted)
+# ---------------------------------------------------------------------------
+
+version: 1
+
+paths:
+  # Where each trigger appends one JSON line (prompt may be sensitive).
+  log: ~/.cursor/logs/agent-retro-triggers.jsonl
+  # Internal meter state (not the same as the log).
+  state: ~/.cursor/hooks/agent-retro-meter/state.json
+
+composer:
+  # Max tool calls in ONE main-agent turn (0 = off). Plan-style runs rack this
+  # up quickly; pair with require_both or raise this if you still see noise.
+  min_tools: 48
+
+  # Min real-world ms for the turn (0 = off). 900000 = 15 minutes.
+  min_wall_ms: 900000
+
+  # If true: only trigger when BOTH min_tools and min_wall_ms are non-zero AND
+  # both crossed (AND). Recommended if Cursor plan builds trip the tool count
+  # alone. If either threshold is 0, AND mode is ignored and OR logic is used.
+  require_both: true
+
+  # If true: when a threshold fires, also auto-send a short follow-up message.
+  nudge: true
+
+  # Custom nudge text; must include {reasons} if you set it. null = built-in.
+  nudge_template: null
+
+subagent:
+  # Sub-agent run: min tool calls reported by Cursor (0 = off).
+  min_tools: 0
+  # Sub-agent run: min duration in ms (0 = off).
+  min_ms: 0
+  # Usually leave false; true can auto-continue the parent chat after a Task.
+  nudge: false
+  nudge_template: null
