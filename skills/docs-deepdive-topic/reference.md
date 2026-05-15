@@ -14,6 +14,16 @@ Use web search (and fetches when helpful). Prefer primary docs and official repo
 | Research papers | arXiv, ACM, IEEE, Google Scholar; prefer abstracts and stated limitations. |
 | Product documentation | Official docs domains, changelogs, API reference, migration guides. |
 
+### Minimum search coverage
+
+Before writing any `deepdive.md` section you **must** attempt at least **three distinct channel types**. For technical ML/tooling topics the required minimum is:
+
+1. **Primary technical source** — arXiv, official docs, or spec (paper, RFC, changelog).
+2. **Implementation artifact** — GitHub/GitLab repo, model hub card (Hugging Face, Ollama registry), or official benchmark leaderboard.
+3. **Practitioner forum** — Reddit (`r/MachineLearning`, `r/LocalLLaMA`, etc.), Hacker News, or a project Discord/issue tracker.
+
+Document failed searches in `reference.md` (e.g. "Searched `site:reddit.com slm edge inference`; no threads with ≥10 comments found as of YYYY-MM-DD") so the next review does not repeat them blindly.
+
 ## Query building
 
 Combine **canonical names** (product, paper title, repo org/name) with **intent words**: `documentation`, `changelog`, `limitations`, `reddit discussion`, `issue`, `RFC`, `arxiv`, `evaluation`, `benchmark`.
@@ -84,16 +94,19 @@ Each topic under `<docs-dir>/topics/<slug>/` uses:
 
 ### `deepdive.md`
 
-- **How it works (in depth):** Architecture, data/control flow, equations, version quirks, edge cases.
-- **Implementation notes:** Practical steps (envs, commands, repo paths, notebooks, pipelines) and how to validate.
-- **Research Backing:** Papers, benchmarks, official research posts, stated limitations, or explicit “no strong backing found” after search.
-- **Public Sentiment:** Thread/issue tone with selection-bias caveats; cite `SRC-###` per specific claim.
+- **How it works (in depth):** Named architectural components, data/control flow, key design decisions, equations or pseudocode where they clarify (not merely decorate), version quirks and edge cases. **This section must explain the mechanism itself — not summarise what a source covers.** A phrase like "the paper analyses architecture, datasets, and algorithms" is not a deep dive; name the actual components (e.g. tokeniser type, attention variant, positional encoding scheme, training objective). Cite ≥2 independent sources; a single survey is a starting point, not backing.
+
+- **Implementation notes:** Runnable commands, config snippets, model-hub identifiers, environment requirements, hardware numbers (VRAM, latency, context length), and a concrete "how to validate" step. **Do not defer wholesale to a paper** ("see the paper for implementation detail"). Extract the relevant step, quote the key config line, or state explicitly why a practical artifact cannot be provided. If a vendor CLI or tool is involved, name it and its relevant flags.
+
+- **Research Backing:** ≥2 distinct source types (e.g. a paper + a benchmark leaderboard, two independent papers, or a paper + a model card with published eval numbers). State specific results or stated limitations — not just that a paper exists. If no strong backing is found after genuine search across the required channels, write "No peer-reviewed backing found; searched [channels] as of YYYY-MM-DD."
+
+- **Public Sentiment:** Named-thread or issue tone tied to `SRC-###`, with selection-bias caveats. If genuine multi-channel search found nothing, write "Queried [channels] on [date]; no substantial practitioner discussion found" — do not leave this section blank, as a placeholder, or silently skipped.
 
 ## Sentiment guardrails
 
-- Attribute sentiment to **sources** (e.g. “maintainers on GitHub emphasize X — SRC-012”) rather than universal claims.
+- Attribute sentiment to **sources** (e.g. "maintainers on GitHub emphasize X — SRC-012") rather than universal claims.
 - Call out **uncertainty**: vocal minorities, release timing, version skew.
 
 ## When searches fail
 
-Document dead ends briefly in `reference.md` (e.g. “No arXiv hits; tried: …”) so the next review does not repeat the same queries blindly.
+Document dead ends briefly in `reference.md` (e.g. "No arXiv hits; tried: …") so the next review does not repeat the same queries blindly.
