@@ -12,4 +12,4 @@ Cursor loads `SKILL.md` by skill name **`repo-convention-change`**. Say in chat:
 
 **Refresh:** after editing here, copy to other machines or in-repo copies as needed.
 
-**Pairing:** use the **`repo-tooling-invariants`** rule when the convention touches scripts or generated artifacts; use **`cursor-workflow-review`** for a full handbook/rules audit.
+**Pairing:** use the repo **`AGENTS.md` → Tooling profile** when the convention touches scripts or generated artifacts; use **`cursor-workflow-review`** for a full handbook/rules audit.

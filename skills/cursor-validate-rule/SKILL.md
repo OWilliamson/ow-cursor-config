@@ -62,7 +62,8 @@ Classify everything in scope before evaluating.
 3. Read the target and any linked sibling in scope.
 4. Run all CR-norm checks from `reference-cursor-rule-authoring-norms.md`:
    - **Frontmatter and activation:**
-     - Dead rule: `alwaysApply: false` + no `globs` (`CR-DEAD-RULE`).
+     - Dead rule: `alwaysApply: false` + no `globs` and no meaningful `description` (`CR-DEAD-RULE`). `alwaysApply: false` with one-line `description` and no `globs` = apply intelligently.
+     - Folded `description`: no `>-`, `|`, or multiline block values (`CR-DESC-SINGLE-LINE`).
      - Glob precision: state one path that should match and one that should not (`CR-GLOB-PRECISION`).
      - Picker label: `description` reads as a clear one-liner (`CR-DESC-PICKER`).
      - Scope contradictions: `alwaysApply: true` + "only when editing X" body text (`CR-SCOPE-EXCLUSIVE`).

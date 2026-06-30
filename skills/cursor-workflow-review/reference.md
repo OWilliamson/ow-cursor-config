@@ -74,7 +74,7 @@ Do **multiple** places repeat the same policy **without** a single canonical lin
 
 Are there **more branches/options** than needed (confusing defaults vs escape hatches), without a clear **default path**?
 
-When scripts, packagers, or generated artifacts appear in the review surface, score Q8 against the **`repo-tooling-invariants`** rule (see `ow-cursor-config/rules/repo-tooling-invariants.mdc`) and the target repo’s **`AGENTS.md` → Tooling profile** for named invariants—do not invent a separate bar in this review.
+When scripts, packagers, or generated artifacts appear in the review surface, score Q8 against the target repo’s **`AGENTS.md` → Tooling profile** for named invariants—do not invent a separate bar in this review.
 
 ## Efficiency notes (workflow review)
 

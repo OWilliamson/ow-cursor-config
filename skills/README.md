@@ -9,7 +9,6 @@
 | Prefix | Meaning |
 |--------|---------|
 | **`repo-`** | Repository structure, policy, cleanup, conventions |
-| **`plan-`** | Cursor Plan / Build preparation |
 | **`script-`** | Scripts and small tooling code review |
 | **`cursor-`** | Cursor meta (session retro, skills and rules validate/improve, workflow review, UI rules migration) |
 
@@ -19,24 +18,21 @@
 |--------------|----------------|
 | [repo-convention-change/](repo-convention-change/) | **Convention changes** without drift: classify new vs restate vs redefine; align docs and tooling to one policy. |
 | [repo-cleanup/](repo-cleanup/) | **Audit** Cursor-oriented repos for cruft, merges, consolidation, rehoming rules/skills, `.gitignore`; report first, then edit only after approval. |
-| [plan-check-cursor/](plan-check-cursor/) | **Tightens plan documents** before Build: phases, frozen decisions, done criteria, deduped todos; `disable-model-invocation` (use `/plan-check-cursor` or `@plan-check-cursor`). |
 | [script-review/](script-review/) | **Structured script / tooling code review**: errors, design, structure, efficiency, docs, error handling, sanity check. |
 | [cursor-session-retro/](cursor-session-retro/) | **Post-mortem / retro** for painful agent sessions: evidence-backed root causes and a capped backlog. Optional hook integration via `reference-hooks.md`. |
 | [cursor-workflow-review/](cursor-workflow-review/) | **Red/Amber/Green** workflow review **or** **policy inventory** (where conventions live); see `reference.md` fast path; helpers under `scripts/`. |
 | [cursor-validate-skill/](cursor-validate-skill/) | **Mechanical pass/fail audit** of a `SKILL.md` package against vendored norms; chat report with findings keyed to norm IDs. |
 | [cursor-improve-skill/](cursor-improve-skill/) | **Editorial refactor + apply** for a `SKILL.md` package; post-change capabilities and usage report. |
-| [cursor-test-skill/](cursor-test-skill/) | **Behavioural effectiveness test** for a `SKILL.md` via RED-GREEN-VERIFY pressure scenarios; chat effectiveness report. |
 | [cursor-convert-ui-rules/](cursor-convert-ui-rules/) | **Migrates** Settings “User Rules” paste into `.mdc` files (manual invocation only). |
 | [cursor-validate-rule/](cursor-validate-rule/) | **Read-only audit** of a Cursor rule (`.mdc`) against authoring norms; explicit `/cursor-validate-rule` or `@cursor-validate-rule` (`disable-model-invocation`). |
 | [cursor-improve-rule/](cursor-improve-rule/) | **Refactors** a rule (`.mdc`) for clarity and less drift before shipping; explicit `/cursor-improve-rule` or `@cursor-improve-rule` (`disable-model-invocation`). |
 
-**Tooling philosophy** is enforced primarily by the Cursor rule **[`repo-tooling-invariants.mdc`](../rules/repo-tooling-invariants.mdc)** (scoped by `globs`), not by a separate skill in this folder.
+**Tooling philosophy** belongs in each repo's **`AGENTS.md` → Tooling profile** (the former `repo-tooling-invariants` rule is archived pending rethink — see [`archive/superseded-rules/`](../../archive/superseded-rules/)).
 
 ### Supporting assets (by skill)
 
 | Location | Role |
 |----------|------|
-| `plan-check-cursor/` | `reference-checklist.md`, `reference-patterns.md`, `agent-build-plan-notes.md` — plan quality gates and templates. |
 | `cursor-workflow-review/scripts/` | `check_paths.py`, `extract_cited_paths.py`, `scan_rule_frontmatter.py` — repo/rule path checks. |
 | `cursor-workflow-review/reference.md` | Full RAG output template, **policy inventory fast path**, helper script invocations. |
 | `cursor-validate-rule/`, `cursor-improve-rule/` | `reference-cursor-rule-authoring-norms.md`, `reference-report-skeleton.md`, `reference-examples.md` — rule authoring norms and samples. |

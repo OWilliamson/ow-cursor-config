@@ -47,9 +47,7 @@ Never store local time in the database. Always convert to UTC before persisting.
 ### Before
 
 ```yaml
-description: >-
-  When editing TypeScript files: check for any type, verify strict null checks
-  are handled, ensure no implicit returns, and confirm exports are typed.
+description: When editing TypeScript files: check for any type, verify strict null checks are handled, ensure no implicit returns, and confirm exports are typed.
 ```
 
 This description summarises four internal workflow steps. The agent may follow the description instead of reading the body.
@@ -64,7 +62,35 @@ Detail moves into the rule body where it belongs.
 
 ---
 
-## Example 3: CR-SCOPE-EXCLUSIVE — body contradicts alwaysApply: true
+## Example 3: CR-DESC-SINGLE-LINE — folded YAML description breaks Cursor UI
+
+### Before
+
+```yaml
+---
+description: >-
+  Apply when the user reports an issue, bug, regression, or failure, or asks to
+  investigate, diagnose, debug, or find root cause of broken behaviour.
+alwaysApply: false
+---
+```
+
+Cursor Settings may display the rule name as `>-` with an empty body. Intelligent apply may see `description` as the literal `>-` instead of the folded text.
+
+### After
+
+```yaml
+---
+description: Apply when the user reports an issue, bug, regression, or failure, or asks to investigate, diagnose, debug, or find root cause.
+alwaysApply: false
+---
+```
+
+One physical line. Quote the value if the line contains colons that could confuse a naive parser: `description: "Apply when editing API routes: validate input and status codes."`
+
+---
+
+## Example 4: CR-SCOPE-EXCLUSIVE — body contradicts alwaysApply: true
 
 ### Before
 

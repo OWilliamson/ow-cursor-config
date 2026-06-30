@@ -65,7 +65,8 @@ Classify everything in scope before editing.
 3. Audit the target and any linked sibling in scope.
    - **Frontmatter and activation:**
      - Verify `description`, `globs`, and `alwaysApply` match intent and each other.
-     - Dead rule check: `alwaysApply: false` + no `globs` = never fires (`CR-DEAD-RULE`).
+     - `description` must be **one physical line** — no YAML `>-`, `|`, or indented continuations (`CR-DESC-SINGLE-LINE`). Cursor Settings may show `>-` as the rule name and break intelligent apply.
+     - Dead rule check: `alwaysApply: false` + no `globs` and no meaningful `description` = never fires (`CR-DEAD-RULE`). `alwaysApply: false` with a one-line `description` and no `globs` = apply intelligently in Cursor.
      - Glob precision: state one path that should match and one that should not (`CR-GLOB-PRECISION`).
      - Picker label: `description` must read as a clear one-liner in the rule picker (`CR-DESC-PICKER`).
    - **Always-on budget:** list all `alwaysApply: true` rules in the same directory; sum line counts; flag if total is disproportionate (`CR-ALWAYS-ON-BUDGET`).
@@ -73,7 +74,7 @@ Classify everything in scope before editing.
    - **Body:** split if multiple unrelated concerns; replace vague guidance with executable checks.
    - Apply `CR-RULE-NO-ORPHANS`, `CR-RULE-REFS-EXIST`, `CR-RULE-SIBLINGS-LEAN` when siblings exist.
 4. Rewrite the target `.mdc` toward a common spine: when the rule applies, what the agent must do, what it must not do, then ordered checks or steps.
-5. When the frontmatter `description` summarises long workflow steps, compress it to trigger-oriented wording and move detail into the body (or a one-hop sibling).
+5. When the frontmatter `description` summarises long workflow steps, compress it to trigger-oriented wording and move detail into the body (or a one-hop sibling). Keep `description` on **one line** — never use YAML block/folded scalars (`CR-DESC-SINGLE-LINE`).
 6. For each linked sibling, either keep as-is, tighten, relocate content back into the rule, or mark for removal with explicit rationale. Do not silently drop requirements.
 7. If the rule is discipline-enforcing, add or refresh an `Excuse → Reality` table for loopholes the agent might rationalize.
 8. Deliver the post-change report using `reference-report-skeleton.md`.

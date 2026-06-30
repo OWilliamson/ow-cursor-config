@@ -9,8 +9,8 @@ Authoritative docs and templates live in the **ow-cursor-config** repository tha
 | Migration template | `templates/user-rules-migration.md` |
 | Tooling map | `docs/user-tooling-map.md` |
 | User sync | `docs/user-cursor-sync.md` |
-| Global rules in hub (when present) | `ow-cursor-config/rules/` |
-| Packaged rules bundle | `ow-cursor-config/rules/` |
+| Global rules in hub (when present) | `public/rules/` |
+| Packaged rules bundle | `public/rules/` |
 
 Read the migration template when generating frontmatter and post-steps.
 
@@ -28,8 +28,8 @@ For **each** block, emit one `.mdc` file that matches the migration template.
 
 Prefer, in order, unless the user specifies otherwise:
 
-1. **`ow-cursor-config/rules/`** under the hub clone above, if that directory exists or the user is adding new hub globals.
-2. **`ow-cursor-config/rules/`** under the same clone for the packaged bundle.
+1. **`public/rules/`** under the hub clone above, if that directory exists or the user is adding new hub globals.
+2. **`public/rules/`** under the same clone for the packaged bundle.
 3. **Live profile rules directory** when the user only wants the live profile updated (still remind them to keep git canonical if they use the hub).
 
 If both hub targets are plausible and the user did not say which, **ask once** before writing.

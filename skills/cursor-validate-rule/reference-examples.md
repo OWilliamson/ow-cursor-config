@@ -8,9 +8,7 @@
 
 ```yaml
 ---
-description: >-
-  When editing TypeScript or Python files: check for any type, verify strict null
-  checks are handled, ensure no implicit returns, and confirm all exports are typed.
+description: When editing TypeScript or Python files, check for any type, verify strict null checks, ensure no implicit returns, and confirm all exports are typed.
 alwaysApply: false
 ---
 
@@ -32,17 +30,16 @@ Never use `any` type in TypeScript. Always use strict null checks...
 **Activation summary:**
 - `alwaysApply`: false
 - `globs`: not set
-- Dead rule check (`CR-DEAD-RULE`): **FAIL** — `alwaysApply: false` with no `globs`; rule never fires automatically.
+- Dead rule check (`CR-DEAD-RULE`): **Pass** — `alwaysApply: false` with one-line `description` and no `globs` = apply intelligently in Cursor.
 - Sample path that SHOULD match: N/A (no globs defined)
 - Glob precision verdict: N/A — fix dead rule first.
 
-**Executive pass/fail:** Fail — one Critical finding (dead rule) blocks shipping.
+**Executive pass/fail:** Fail — Critical finding (`CR-DESC-WORKFLOW-SUMMARY`) blocks shipping.
 
 **Findings table:**
 
 | Norm ID | Severity | Evidence | Minimal fix |
 |---------|----------|----------|-------------|
-| `CR-DEAD-RULE` | Critical | `alwaysApply: false`, no `globs` field | Add `globs: ["**/*.ts", "**/*.tsx"]` or set `alwaysApply: true` |
 | `CR-DESC-WORKFLOW-SUMMARY` | Critical | description lists four internal checks ("check for any type, verify strict null checks...") | Rewrite to trigger: "TypeScript strict-mode conventions. Applies when editing .ts/.tsx files." |
 | `CR-SCOPE-EXCLUSIVE` | Suggestion | description mentions Python files but body only covers TypeScript | Remove Python from scope or add Python-specific guidance |
 
@@ -61,5 +58,6 @@ Never use `any` type in TypeScript. Always use strict null checks...
 ## Notes
 
 - Quote evidence verbatim; do not paraphrase.
-- Always complete the activation summary before the findings table — a dead rule invalidates glob precision checks.
+- Always complete the activation summary before the findings table.
+- Flag `CR-DESC-SINGLE-LINE` when `description` uses `>-`, `|`, or continuation lines under `description:`.
 - Never skip the passing checks list; omitting them makes the report look like all-fail.

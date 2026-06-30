@@ -76,7 +76,7 @@ New | Restatement | Redefinition (supersedes: [link or “informal prior”])
 
 | If the work is mostly… | Read next |
 | ---------------------- | --------- |
-| Flags, packagers, ZIP/build shape, “safe default” | `repo-tooling-invariants` rule |
+| Flags, packagers, ZIP/build shape, “safe default” | Repo `AGENTS.md` → Tooling profile |
 | Full agent handbook + rules audit | `cursor-workflow-review` |
 
 ## Install location

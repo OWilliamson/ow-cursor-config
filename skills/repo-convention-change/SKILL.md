@@ -21,7 +21,7 @@ Use this skill **before** editing scattered files when the task touches **how th
 - User implies **“we already agreed on this”** or **“fix drift”** vs **“introduce something new”**—ambiguity is high.
 - User asks for a **canonical doc**, **policy table**, or **alignment** across handbook, rules, scripts, and tests.
 
-**Defer instead of duplicating:** for CLI flags, packagers, and generated artifacts, apply the **`repo-tooling-invariants`** rule after policy is clear. For auditing `AGENTS.md` / `.cursor/rules` / hubs holistically, use **`cursor-workflow-review`**.
+**Defer instead of duplicating:** for CLI flags, packagers, and generated artifacts, apply the target repo’s **`AGENTS.md` → Tooling profile** after policy is clear. For auditing `AGENTS.md` / `.cursor/rules` / hubs holistically, use **`cursor-workflow-review`**.
 
 ## Phase 0 — Classify (mandatory, answer in prose before large edits)
 

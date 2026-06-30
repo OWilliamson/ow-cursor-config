@@ -1,6 +1,6 @@
 # Cursor rule authoring norms
 
-Aligned with Cursor rule guidance (see project `create-rule` skill) and lean-rule practice; last synced 2026-05-12.
+Aligned with Cursor rule guidance (see project `create-rule` skill) and lean-rule practice; last synced 2026-06-12.
 
 These norms are the canonical master for `cursor-validate-rule`, and copied byte-identically into `cursor-improve-rule`.
 
@@ -34,19 +34,21 @@ These norms are the canonical master for `cursor-validate-rule`, and copied byte
 | `CR-TERMINOLOGY` | one term per concept throughout | Suggestion |
 | `CR-NO-TIME-BOMBS` | no time-sensitive phrases unless in a dated legacy section | Suggestion |
 | `CR-NO-DUP-AGENTS` | no large copy-paste overlap with `AGENTS.md` or other rules without a single canonical home | Suggestion |
-| `CR-DEAD-RULE` | rule is not `alwaysApply: false` with no `globs` (would never fire automatically) | Critical |
+| `CR-DEAD-RULE` | rule is not `alwaysApply: false` with no `globs` and no meaningful one-line `description` (would never fire automatically) | Critical |
 | `CR-GLOB-PRECISION` | glob matches intended paths and a stated non-matching sample path confirms it does not over-fire | Suggestion |
 | `CR-DESC-PICKER` | `description` is readable as a human-facing rule-picker label: states enforcement effect in one line, avoids internal jargon | Suggestion |
+| `CR-DESC-SINGLE-LINE` | `description` is one physical line in the file (no YAML block scalars `>-`, `|`, or folded/multiline values); Cursor Settings and intelligent apply may misread them as the literal `>-` | Critical |
 | `CR-ALWAYS-ON-BUDGET` | cumulative line count of all `alwaysApply: true` rules in the same `.cursor/rules/` directory is not disproportionately large; heaviest rules are flagged | Suggestion |
 | `CR-INTER-RULE-CONFLICT` | no semantic contradiction or unintended duplication with simultaneously active rules (same always-on set or overlapping globs) | Suggestion |
 | `CR-SCOPE-LAYER` | when both a user-scope (`~/.cursor/rules/`) and project-scope (`.cursor/rules/`) rule address the same topic, they do not contradict; canonical home is explicit | Suggestion |
 
 ## Frontmatter guidance
 
-- `description`: third person; what the rule enforces and when it applies (activation hint). Also a **human-facing label** in the Cursor rule picker — must communicate the enforcement effect clearly as a one-liner, without internal jargon.
+- `description`: third person; what the rule enforces and when it applies (activation hint). Also a **human-facing label** in the Cursor rule picker — must communicate the enforcement effect clearly as a one-liner, without internal jargon. **One physical line only** — do not use YAML folded/block scalars (`>-`, `|`, multiline indentation). Quote the whole string on one line if punctuation requires it.
 - `alwaysApply: true`: use sparingly for universal, short constraints; contributes to the cumulative always-on token budget every turn.
-- `alwaysApply: false` with `globs`: prefer for file-type or area-specific rules.
-- `alwaysApply: false` with no `globs`: dead rule — never fires automatically. Either add globs or switch to `alwaysApply: true`.
+- `alwaysApply: false` with `globs`: file-scoped rules.
+- `alwaysApply: false` with no `globs` but a one-line `description`: apply intelligently in Cursor (agent uses `description` as the trigger).
+- `alwaysApply: false` with no `globs` and empty or missing `description`: dead rule — only fires on manual `@` mention. Either add `globs`, add a one-line `description`, or set `alwaysApply: true`.
 - Avoid redundant fields that confuse activation (for example both “always” language in the body and narrow `globs` without explanation).
 
 ## Structure guidance
@@ -60,7 +62,8 @@ These norms are the canonical master for `cursor-validate-rule`, and copied byte
 
 - Run `wc -l` on the `.mdc` and eyeball frontmatter vs body split.
 - Parse frontmatter; confirm `description` length is reasonable for the rule picker (human-readable one-liner).
-- Check for dead rule: `alwaysApply: false` with no `globs` field — flag `CR-DEAD-RULE`.
+- Reject folded or block `description` values (`description: >-`, `description: |`, or continuation lines under `description:`) — flag `CR-DESC-SINGLE-LINE`.
+- Check for dead rule: `alwaysApply: false` with no `globs` and no meaningful one-line `description` — flag `CR-DEAD-RULE`.
 - Test glob precision: state one sample path that should match and one that should not; confirm both; flag `CR-GLOB-PRECISION` if over-broad.
 - List all `alwaysApply: true` rules in the same `.cursor/rules/` directory; sum line counts; flag `CR-ALWAYS-ON-BUDGET` if combined total is disproportionate. For token-level precision, use `npx cursor-doctor budget` (reports actual token cost per rule rather than line count).
 - List all rules simultaneously active with the target; check for semantic overlap or contradiction; flag `CR-INTER-RULE-CONFLICT`.
