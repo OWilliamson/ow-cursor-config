@@ -10,7 +10,7 @@
 |--------|---------|
 | **`repo-`** | Repository structure, policy, cleanup, conventions |
 | **`script-`** | Scripts and small tooling code review |
-| **`cursor-`** | Cursor meta (session retro, skills and rules validate/improve, workflow review, UI rules migration) |
+| **`cursor-`** | Cursor meta (identity rule scaffold, session retro, skills and rules validate/improve, workflow review, UI rules migration) |
 
 ## Skill packages
 
@@ -19,6 +19,7 @@
 | [repo-convention-change/](repo-convention-change/) | **Convention changes** without drift: classify new vs restate vs redefine; align docs and tooling to one policy. |
 | [repo-cleanup/](repo-cleanup/) | **Audit** Cursor-oriented repos for cruft, merges, consolidation, rehoming rules/skills, `.gitignore`; report first, then edit only after approval. |
 | [script-review/](script-review/) | **Structured script / tooling code review**: errors, design, structure, efficiency, docs, error handling, sanity check. |
+| [cursor-create-identity-rule/](cursor-create-identity-rule/) | **Scaffold** a personal always-on `{handle}-user.mdc` with GitHub bindings for `github-and-remotes.mdc`; manual invocation only (`disable-model-invocation`). |
 | [cursor-session-retro/](cursor-session-retro/) | **Post-mortem / retro** for painful agent sessions: evidence-backed root causes and a capped backlog. Optional hook integration via `reference-hooks.md`. |
 | [cursor-workflow-review/](cursor-workflow-review/) | **Red/Amber/Green** workflow review **or** **policy inventory** (where conventions live); see `reference.md` fast path; helpers under `scripts/`. |
 | [cursor-validate-skill/](cursor-validate-skill/) | **Mechanical pass/fail audit** of a `SKILL.md` package against vendored norms; chat report with findings keyed to norm IDs. |
@@ -38,5 +39,6 @@
 | `cursor-validate-rule/`, `cursor-improve-rule/` | `reference-cursor-rule-authoring-norms.md`, `reference-report-skeleton.md`, `reference-examples.md` — rule authoring norms and samples. |
 | `repo-convention-change/`, `repo-cleanup/` | `reference.md` (and `repo-convention-change/README.md`). |
 | `cursor-convert-ui-rules/` | `reference-hub.md`. |
+| `cursor-create-identity-rule/` | `reference-hub.md`, `reference-examples.md` — template, preflight, and worked examples. |
 | `script-review/` | `reference-rubric.md`. |
 | `*/reference.md`, `*/reference-checklist.md`, `*/reference-report-skeleton.md`, `*/reference-cursor-authoring-norms.md`, `*/reference-examples.md`, `*/README.md` | Other skills: extra checklists and references loaded when the skill points to them. |

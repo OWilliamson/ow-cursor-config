@@ -9,6 +9,8 @@ alwaysApply: false
 
 Applies when reading GitHub repos, using `gh`/GitHub MCP, or performing any git remote write (push, PR, issue, release, etc.).
 
+**Personal GitHub account:** the user/org named in the user's **identity rule** (if installed). Use it for remote matching and repo-creation defaults below. If no identity rule names an account, ask before assuming owner.
+
 ## Reading repositories
 
 When given GitHub links, try **GitHub MCP** first, then **SSH**, then **HTTP/S**.
@@ -17,9 +19,9 @@ Prefer GitHub MCP for API operations (issues, PRs, releases, metadata) when avai
 
 ## Creating repositories
 
-Create a repo **only when the user specifically asks** (`gh`, GitHub MCP, or web UI). Defaults unless overridden:
+Create a repo **only when the user specifically asks** (`gh`, GitHub MCP, or web UI). Defaults unless overridden or the identity rule specifies otherwise:
 
-- **Owner:** OWilliamson
+- **Owner:** personal GitHub account (from identity rule)
 - **Default branch:** `main`
 - **Visibility:** private
 
@@ -31,22 +33,22 @@ Create a repo **only when the user specifically asks** (`gh`, GitHub MCP, or web
 
 ## Repository classes
 
-Treat the GitHub user/org in a remote URL or API path as **OWilliamson** when it matches this account **case-insensitively**.
+Treat the GitHub user/org in a remote URL or API path as the **personal account** when it matches that handle **case-insensitively**.
 
 | Class | Writable? |
 |-------|-----------|
-| **OWilliamson fork** — fork under the OWilliamson account | Yes (visibility rules below) |
-| **OWilliamson private repo** — under OWilliamson, not public | Yes |
+| **Personal fork** — fork under the personal account | Yes (visibility rules below) |
+| **Personal private repo** — under the personal account, not public | Yes |
 | **Company or org repo** — any org namespace, even with collaborator access | Read-only |
-| **Collaborator repo** — another user's namespace, not OWilliamson | Read-only |
-| **Upstream of your fork** — parent of an OWilliamson fork | Read-only |
+| **Collaborator repo** — another user's namespace, not the personal account | Read-only |
+| **Upstream of your fork** — parent of a personal fork | Read-only |
 | **Everything else** not listed above as writable | Read-only |
 
 Do **not** create forks. If asked, explain this profile does not allow fork creation.
 
 ## Write policy by visibility
 
-- **OWilliamson private repos and OWilliamson forks (private):** read/write — push, pull, branch, routine GitHub updates without asking each time.
+- **Personal private repos and personal forks (private):** read/write — push, pull, branch, routine GitHub updates without asking each time.
 - **Public repos** (any namespace): write actions **only when the user specifically asks** for that action.
 
 ## Before any push or remote write
@@ -73,6 +75,6 @@ Unless the user **specifically asks** for that exact action:
 | Excuse | Reality |
 |--------|---------|
 | "`origin` is probably mine." | Verify remote URL against repository class before every push. |
-| "Public OWilliamson repo — I can push." | Public repos need an explicit write request per action. |
+| "Public repo under my personal account — I can push." | Public repos need an explicit write request per action. |
 | "Org repo but I have admin." | Org namespaces are read-only in this profile. |
 | "I'll fork to contribute." | Fork creation is denied; explain and stop. |
