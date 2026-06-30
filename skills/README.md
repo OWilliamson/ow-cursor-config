@@ -10,7 +10,6 @@
 |--------|---------|
 | **`repo-`** | Repository structure, policy, cleanup, conventions |
 | **`plan-`** | Cursor Plan / Build preparation |
-| **`docs-`** | Documentation corpus quality |
 | **`script-`** | Scripts and small tooling code review |
 | **`cursor-`** | Cursor meta (session retro, skills and rules validate/improve, workflow review, UI rules migration) |
 
@@ -21,9 +20,6 @@
 | [repo-convention-change/](repo-convention-change/) | **Convention changes** without drift: classify new vs restate vs redefine; align docs and tooling to one policy. |
 | [repo-cleanup/](repo-cleanup/) | **Audit** Cursor-oriented repos for cruft, merges, consolidation, rehoming rules/skills, `.gitignore`; report first, then edit only after approval. |
 | [plan-check-cursor/](plan-check-cursor/) | **Tightens plan documents** before Build: phases, frozen decisions, done criteria, deduped todos; `disable-model-invocation` (use `/plan-check-cursor` or `@plan-check-cursor`). |
-| [docs-audit/](docs-audit/) | **Documentation corpus audit**: structure, metadata, freshness, links, consistency; checklists, templates, and Python helpers in `scripts/`. |
-| [docs-add-info/](docs-add-info/) | **Adds new information** (sources, synthesis, research notes) into hub docs in a controlled way; routes findings into `exploration/` topics or `docs/` pages with `SRC-###` citation discipline. (`disable-model-invocation`) |
-| [docs-deepdive-topic/](docs-deepdive-topic/) | **Web-backed deep-dive** for one `exploration/topics/<slug>/`; refreshes `reference.md`, `info.md`, and `deepdive.md` with registry-backed citations and structured headings. (`disable-model-invocation`) |
 | [script-review/](script-review/) | **Structured script / tooling code review**: errors, design, structure, efficiency, docs, error handling, sanity check. |
 | [cursor-session-retro/](cursor-session-retro/) | **Post-mortem / retro** for painful agent sessions: evidence-backed root causes and a capped backlog. Optional hook integration via `reference-hooks.md`. |
 | [cursor-workflow-review/](cursor-workflow-review/) | **Red/Amber/Green** workflow review **or** **policy inventory** (where conventions live); see `reference.md` fast path; helpers under `scripts/`. |
@@ -40,8 +36,6 @@
 
 | Location | Role |
 |----------|------|
-| `docs-audit/` | `CHECKLIST.md`, `EXAMPLES.md`, `REPORT_TEMPLATE.md`, `WORKFLOW.md`, plus `scripts/` below. |
-| `docs-audit/scripts/` | `scan_docs.py`, `check_links.py`, `summarize_corpus.py` — automation for audits. |
 | `plan-check-cursor/` | `reference-checklist.md`, `reference-patterns.md`, `agent-build-plan-notes.md` — plan quality gates and templates. |
 | `cursor-workflow-review/scripts/` | `check_paths.py`, `extract_cited_paths.py`, `scan_rule_frontmatter.py` — repo/rule path checks. |
 | `cursor-workflow-review/reference.md` | Full RAG output template, **policy inventory fast path**, helper script invocations. |
