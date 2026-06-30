@@ -1,0 +1,78 @@
+---
+description: GitHub and git-remote policy when using gh, GitHub MCP, push, PR, issues, or repo links.
+alwaysApply: false
+---
+
+# GitHub and Git remotes
+
+## Scope
+
+Applies when reading GitHub repos, using `gh`/GitHub MCP, or performing any git remote write (push, PR, issue, release, etc.).
+
+## Reading repositories
+
+When given GitHub links, try **GitHub MCP** first, then **SSH**, then **HTTP/S**.
+
+Prefer GitHub MCP for API operations (issues, PRs, releases, metadata) when available.
+
+## Creating repositories
+
+Create a repo **only when the user specifically asks** (`gh`, GitHub MCP, or web UI). Defaults unless overridden:
+
+- **Owner:** OWilliamson
+- **Default branch:** `main`
+- **Visibility:** private
+
+## Commits and pull requests
+
+- Use **complete sentences**; put the **why** in the body when not obvious from the title.
+- **Scope detail** to the change — short for small fixes; enough context for larger or risky changes.
+- Use **full paths or URLs** for file and web references.
+
+## Repository classes
+
+Treat the GitHub user/org in a remote URL or API path as **OWilliamson** when it matches this account **case-insensitively**.
+
+| Class | Writable? |
+|-------|-----------|
+| **OWilliamson fork** — fork under the OWilliamson account | Yes (visibility rules below) |
+| **OWilliamson private repo** — under OWilliamson, not public | Yes |
+| **Company or org repo** — any org namespace, even with collaborator access | Read-only |
+| **Collaborator repo** — another user's namespace, not OWilliamson | Read-only |
+| **Upstream of your fork** — parent of an OWilliamson fork | Read-only |
+| **Everything else** not listed above as writable | Read-only |
+
+Do **not** create forks. If asked, explain this profile does not allow fork creation.
+
+## Write policy by visibility
+
+- **OWilliamson private repos and OWilliamson forks (private):** read/write — push, pull, branch, routine GitHub updates without asking each time.
+- **Public repos** (any namespace): write actions **only when the user specifically asks** for that action.
+
+## Before any push or remote write
+
+Verify the **target remote URL** (or API repo path) matches the intended repository class. Do not push to `origin` by habit.
+
+## Read-only repositories
+
+On read-only classes, do **not** `git push` (including force-push); open or update PRs, issues, comments, releases, or wiki pages; or run GitHub MCP / `gh` commands that create, update, delete, or publish.
+
+**Allowed:** inspect via MCP or web, search, `git clone`, `git fetch`, `git pull` for study or local builds. Local-only Git with no remote write is fine.
+
+If the user asks to write to a read-only repo, explain this profile treats it as read-only.
+
+## Restricted operations (all repos)
+
+Unless the user **specifically asks** for that exact action:
+
+- **Destructive:** do not delete repos, transfer ownership, rename default branch, or change visibility.
+- **Deny without exception:** fork creation; GitHub Actions (workflows, secrets, variables, runners, dispatch); Packages/GHCR publish or settings; Discussions; Projects (classic and v2); branch protection changes.
+
+## Excuse → reality
+
+| Excuse | Reality |
+|--------|---------|
+| "`origin` is probably mine." | Verify remote URL against repository class before every push. |
+| "Public OWilliamson repo — I can push." | Public repos need an explicit write request per action. |
+| "Org repo but I have admin." | Org namespaces are read-only in this profile. |
+| "I'll fork to contribute." | Fork creation is denied; explain and stop. |

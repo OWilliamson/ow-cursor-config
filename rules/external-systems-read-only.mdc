@@ -1,0 +1,24 @@
+---
+description: Default-deny writes outside the workspace; read and explore freely. Domain rules add detail.
+alwaysApply: true
+---
+
+# External systems (default read-only)
+
+- **Writable:** workspace root only (local edits; local commits with no remote effect).
+- **Read-only by default:** network services, remote git, MCP/API, paths outside workspace.
+
+| Action | Default |
+|--------|---------|
+| Read, search, list, fetch, download, clone for study | **Allow** |
+| Create, update, delete, publish, comment, upload, or otherwise mutate external state | **Deny** |
+
+User must **name** the write (push, PR, Jira ticket, Slack message, etc.) or a session user rule must require it. Task phrasing alone is not permission.
+
+When a domain has its own rule, follow it for allow/deny detail.
+
+| Domain | Rule |
+|--------|------|
+| GitHub and Git remotes | [github-and-remotes.mdc](github-and-remotes.mdc) |
+
+No domain rule yet → ask before writing. No stricter `AGENTS.md` or project rule may be overridden.

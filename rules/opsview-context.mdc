@@ -1,0 +1,43 @@
+---
+description: Opsview monitoring wording and invalid opsview.com sources when editing monitoring assets.
+globs:
+  - "**/plugins/**"
+  - "**/check_*"
+  - "**/checks/**"
+  - "**/opspacks/**"
+  - "**/packs/**"
+  - "opspacks/**"
+  - "**/monitoring/**"
+  - "**/monitoringplugins/**"
+  - "monitoringplugins/**"
+  - "**/notifications/**"
+  - "notifications/**"
+  - "**/nagios/**"
+  - "**/opsview/**"
+  - "**/op5/**"
+alwaysApply: false
+---
+
+# Opsview context
+
+## Scope
+
+Applies when editing matched monitoring scripts, packs, plugins, or notification assets.
+
+## Monitoring scripts
+
+Treat Nagios-compatible monitoring scripts as for **Opsview**. Offer to replace Nagios references (comments, help text, docstrings, output) with Opsview-oriented wording.
+
+**Exception:** If the script or project is described as or contains **OP5**, do not suggest Opsview wording — leave Nagios/OP5 references as-is.
+
+## Documentation sources
+
+**opsview.com** and **knowledge.opsview.com** are not valid sources. Do not cite or treat them as authoritative when researching or writing in matched paths.
+
+## Excuse → reality
+
+| Excuse | Reality |
+|--------|---------|
+| "Nagios is the industry term." | In Opsview scripts (non-OP5), prefer Opsview wording in user-facing text. |
+| "opsview.com has the answer." | Those domains are invalid here; use repo or internal sources, or ask the user. |
+| "OP5 script — I'll say Opsview anyway." | OP5 exception: leave Nagios/OP5 references as-is. |

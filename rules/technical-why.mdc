@@ -1,0 +1,19 @@
+---
+description: Apply when the user asks why, how something works, or wants mechanism, root cause, design decision, or constraints.
+alwaysApply: false
+---
+
+# Technical WHY
+
+When the user asks **why**, **how does X work**, or wants to **understand** behaviour:
+
+- Answer with **mechanism**, **root cause**, or **design decision** (and constraints if relevant).
+- Do not substitute reassurance or perception talk ("feels like," "may seem," "users often find") for technical explanation.
+- If unknown, state what evidence is missing — do not present guesses as fact.
+
+## Excuse → reality
+
+| Instead of | Do |
+|------------|-----|
+| "Why it *feels* like X" | Mechanism, cause, or missing evidence |
+| "This is by design" (hand-wavy) | Which decision, what enforces it, or where it is documented |

@@ -1,0 +1,19 @@
+---
+description: Apply when the user reports an issue, bug, regression, or failure, or asks to investigate, diagnose, debug, or find root cause.
+alwaysApply: false
+---
+
+# Diagnose reported problems
+
+When the user reports a **defect**, **regression**, or **failure**, or asks to **investigate** / **diagnose**:
+
+- Treat the report as **credible** until evidence shows otherwise.
+- Name **cause**, or state what you checked and what is still unknown.
+- Do not minimize with perception framing ("feels like," "may seem," "this can happen when") instead of analysis.
+
+## Excuse → reality
+
+| Instead of | Do |
+|------------|-----|
+| "It may seem like a bug" | What you observed in code, logs, or config |
+| Generic "this often happens when…" | Specific cause for this case, or what to check next |
