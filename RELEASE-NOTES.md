@@ -2,6 +2,40 @@
 
 Release history for this repository. Newest day at top.
 
+## 2026-07-07
+
+### Summary
+
+Added profile install/prune scripts and catalog manifest, plus skills for context compression, subagent delegation, tooling picker, customer-facing explanations, and bundle rule/skill install. Added **itrs-org-routing** for ITRS information-source routing. Updated several rules and cursor meta skills (identity rule, validate/improve norms).
+
+### Added
+
+- `rules/itrs-org-routing.mdc` — topic-first routing for ITRS Confluence, Jira, Slack, GitHub, and public docs
+- `catalog/bundle-manifest.yaml`, `catalog/bundle-manifest.json` — shipped rule and skill inventory for install/prune scripts
+- `scripts/` — profile install and prune wrappers (`install-profile-*.sh`/`.ps1`, `prune-profile-*.sh`/`.ps1`, `profile-tooling.md`)
+- `skills/cursor-compress-context/` — compress always-on context files while preserving code, paths, and URLs
+- `skills/cursor-delegate/` — when to use Task subagents and structured return contracts
+- `skills/cursor-install-profile-rules/`, `skills/cursor-install-profile-skills/` — install bundle rules or skills into `~/.cursor/`
+- `skills/cursor-prune-profile-tooling/` — prune profile rules or skills retired from the bundle
+- `skills/cursor-tooling-help/` — one-shot tool picker for skills, rules, hooks, and workflows
+- `skills/customer-explanation/` — draft customer-facing technical explanations from internal context
+
+### Changed
+
+- `rules/external-systems-read-only.mdc` — precedence and domain-rule pointers clarified
+- `rules/github-and-remotes.mdc` — identity-rule binding and write-policy wording
+- `rules/itrs-engineer.mdc` — engineer stance and doc hierarchy updates
+- `rules/opsview-context.mdc` — Opsview wording and invalid-source guardrails
+- `skills/cursor-create-identity-rule/` — SKILL, examples, and hub reference aligned to current norms
+- `skills/cursor-improve-rule/`, `skills/cursor-validate-rule/` — authoring norms reference updates
+- `skills/cursor-improve-skill/`, `skills/cursor-validate-skill/` — authoring norms reference updates
+
+### README updates
+
+- `README.md` — add `catalog/` and `scripts/` to layout table
+- `rules/README.md` — add `itrs-org-routing.mdc`
+- `skills/README.md` — add new skill packages and profile-install row in supporting assets
+
 ## 2026-06-30
 
 ### Summary

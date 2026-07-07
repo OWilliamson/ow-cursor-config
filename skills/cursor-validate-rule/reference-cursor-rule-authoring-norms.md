@@ -1,6 +1,6 @@
 # Cursor rule authoring norms
 
-Aligned with Cursor rule guidance (see project `create-rule` skill) and lean-rule practice; last synced 2026-06-12.
+Aligned with Cursor rule guidance (see project `create-rule` skill) and lean-rule practice; last synced 2026-07-07.
 
 These norms are the canonical master for `cursor-validate-rule`, and copied byte-identically into `cursor-improve-rule`.
 
@@ -41,6 +41,9 @@ These norms are the canonical master for `cursor-validate-rule`, and copied byte
 | `CR-ALWAYS-ON-BUDGET` | cumulative line count of all `alwaysApply: true` rules in the same `.cursor/rules/` directory is not disproportionately large; heaviest rules are flagged | Suggestion |
 | `CR-INTER-RULE-CONFLICT` | no semantic contradiction or unintended duplication with simultaneously active rules (same always-on set or overlapping globs) | Suggestion |
 | `CR-SCOPE-LAYER` | when both a user-scope (`~/.cursor/rules/`) and project-scope (`.cursor/rules/`) rule address the same topic, they do not contradict; canonical home is explicit | Suggestion |
+| `CR-BOUNDARIES-EXPLICIT` | rule states what it does **not** override or require (no commit, no push, read-only external systems, etc.) when scope could be misread | Suggestion |
+| `CR-AUTO-CLARITY` | rules that enforce terse communication or a fixed output format include when to break out (security, irreversible ops, ambiguity) | Suggestion |
+| `CR-NO-FAKE-ABBREV` | prose does not invent shorthands expecting token savings; compress structure instead | Nice to have |
 
 ## Frontmatter guidance
 
@@ -54,6 +57,8 @@ These norms are the canonical master for `cursor-validate-rule`, and copied byte
 ## Structure guidance
 
 - Open with scope: when this rule is in play.
+- **Boundaries:** when the rule could imply side effects, state what it does not authorize.
+- **Auto-Clarity:** for style or format rules, state when normal prose or full detail overrides the rule briefly.
 - Follow with must / must-not, then ordered checks or steps.
 - Checklist rows should be actions or verifications, not essays.
 - Prefer examples that show the correct pattern, not only anti-patterns.
@@ -70,6 +75,8 @@ These norms are the canonical master for `cursor-validate-rule`, and copied byte
 - Check `~/.cursor/rules/` if accessible for a user-scope rule on the same topic; flag `CR-SCOPE-LAYER` if both are active and contradict.
 - Resolve every markdown link path from the rule.
 - If siblings exist, inventory them and verify each is cited or explicitly deprecated.
+- For style or format rules, verify **Auto-Clarity** and **Boundaries** (`CR-AUTO-CLARITY`, `CR-BOUNDARIES-EXPLICIT`).
+- Scan prose for invented abbreviations (`CR-NO-FAKE-ABBREV`).
 
 ## Reporting rules
 

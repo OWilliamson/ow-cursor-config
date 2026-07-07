@@ -2,7 +2,8 @@
 name: cursor-create-identity-rule
 description: >-
   Scaffolds a personal always-on identity rule (.mdc) with handle, legal name,
-  GitHub bindings for github-and-remotes, and communication stance. Use when the
+  GitHub bindings for github-and-remotes, stance, and default in-chat tone
+  (caveman-light, subordinate to other instructions). Use when the
   user manually invokes cursor-create-identity-rule to bootstrap an identity rule,
   user identity rule, or {handle}-user.mdc for a new Cursor profile.
 disable-model-invocation: true
@@ -31,14 +32,14 @@ If any required field is missing, ask **once** with a focused question. Do not i
 ## Definition of done
 
 - One `{handle}-user.mdc` written to the agreed destination with `alwaysApply: true`.
-- Body matches the template in `reference-hub.md` (Identity, GitHub, Stance sections).
+- Body matches the template in `reference-hub.md` (Identity, GitHub, Stance, Chat tone sections).
 - Preflight checks in `reference-hub.md` completed.
 - User reminded per post-steps in `reference-hub.md`.
 
 ## Non-goals
 
 - Do not write identity rules to `public/rules/` (identity is personal, not export staging).
-- Do not fold in coding standards, external-systems policy, or domain rules.
+- Do not fold in coding standards, external-systems policy, or domain rules — the Chat tone section is subordinate to them, not a duplicate.
 - Do not invent GitHub orgs, emails, or employer context.
 - Do not duplicate identity prose in **Settings → Rules → User Rules** after the file exists.
 

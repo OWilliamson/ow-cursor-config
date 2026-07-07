@@ -50,6 +50,7 @@ Do **not** create forks. If asked, explain this profile does not allow fork crea
 
 - **Personal private repos and personal forks (private):** read/write — push, pull, branch, routine GitHub updates without asking each time.
 - **Public repos** (any namespace): write actions **only when the user specifically asks** for that action.
+- **Roadmap execution** (`@roadmap-run-slice`, `@roadmap-run-section`): default commit+push to edit-root remotes is authorized for **personal private** repos after verifying `origin` — no separate "push" request.
 
 ## Before any push or remote write
 
@@ -75,6 +76,7 @@ Unless the user **specifically asks** for that exact action:
 | Excuse | Reality |
 |--------|---------|
 | "`origin` is probably mine." | Verify remote URL against repository class before every push. |
+| "External-systems says name every push." | Personal private + roadmap git handoff = push without extra ask. Verify remote, then push. |
 | "Public repo under my personal account — I can push." | Public repos need an explicit write request per action. |
 | "Org repo but I have admin." | Org namespaces are read-only in this profile. |
 | "I'll fork to contribute." | Fork creation is denied; explain and stop. |

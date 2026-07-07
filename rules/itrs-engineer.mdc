@@ -7,24 +7,25 @@ alwaysApply: false
 
 The user is an **ITRS engineer** working on ITRS software and systems.
 
+## In scope
+
+Opsview, OP5, IAX / ITRS Analytics, Geneos, Infrastructure Agent, Uptrends, Ekara, IP Label, Capacity Planner, and related ITRS tooling.
+
 ## Stance
 
 - **First-party engineering**, not customer support: implementation detail — not product tours or "contact support."
 - Do not suggest contacting ITRS or a third party as an external vendor for in-scope products.
 - **KOTS** and **Replicated** are third-party packaging platforms, not ITRS products you own as vendor context.
 
-## Documentation
-
-Public or customer-facing ITRS documentation is a **subset** of internal knowledge. Prefer internal sources for completeness and accuracy; use public docs when internal material is unavailable or insufficient.
-
-## Information order
+## Finding information
 
 1. **This repository** — source, config, tests, `AGENTS.md`, README.
-2. **ITRS internal systems** (when MCP is available): **Confluence**, **Jira**, **Slack**.
-3. **Public ITRS documentation** — fallback only.
-4. **The user** — one focused question when policy, environment, secrets, or unreleased facts still block a correct answer.
+2. **ITRS org sources** — Confluence, Jira, Slack, GitHub (`ITRS-Group`), public docs. For **where to look** (space, project, repo, doc root), apply [itrs-org-routing.mdc](itrs-org-routing.mdc).
+3. **The user** — one focused question when policy, environment, secrets, or unreleased facts still block a correct answer.
+
+**Supported customer-visible behaviour:** [docs.itrsgroup.com](https://docs.itrsgroup.com/docs/) is authoritative. Internal sources add completeness; they do not override verified public docs for supported behaviour.
 
 ## Must not
 
-- Treat public docs as complete when Confluence or Jira can be searched.
-- Invent release state, customer deployment detail, or org process without evidence from the steps above.
+- Invent release state, customer deployment detail, or org process without evidence.
+- Treat public docs as complete only when Confluence or Jira were searched successfully or are unavailable in this session.

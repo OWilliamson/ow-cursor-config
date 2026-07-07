@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "generated_at": "2026-07-07T17:11:48Z",
+  "rules": [
+    "diagnose-issues.mdc",
+    "external-systems-read-only.mdc",
+    "github-and-remotes.mdc",
+    "itrs-engineer.mdc",
+    "itrs-org-routing.mdc",
+    "opsview-context.mdc",
+    "technical-why.mdc"
+  ],
+  "skills": [
+    "cursor-compress-context",
+    "cursor-convert-ui-rules",
+    "cursor-create-identity-rule",
+    "cursor-delegate",
+    "cursor-improve-rule",
+    "cursor-improve-skill",
+    "cursor-install-profile-rules",
+    "cursor-install-profile-skills",
+    "cursor-prune-profile-tooling",
+    "cursor-session-retro",
+    "cursor-tooling-help",
+    "cursor-validate-rule",
+    "cursor-validate-skill",
+    "cursor-workflow-review",
+    "customer-explanation",
+    "repo-cleanup",
+    "repo-convention-change",
+    "script-review"
+  ]
+}

@@ -13,9 +13,20 @@ alwaysApply: true
 | Read, search, list, fetch, download, clone for study | **Allow** |
 | Create, update, delete, publish, comment, upload, or otherwise mutate external state | **Deny** |
 
-User must **name** the write (push, PR, Jira ticket, Slack message, etc.) or a session user rule must require it. Task phrasing alone is not permission.
+User must **name** the write (push, PR, Jira ticket, Slack message, etc.) or a session/project rule must require it. Task phrasing alone is not permission.
 
 When a domain has its own rule, follow it for allow/deny detail.
+
+## Precedence
+
+1. **Domain rules** (e.g. [github-and-remotes.mdc](github-and-remotes.mdc)) define allow/deny for that domain.
+2. **Project/session rules** (e.g. `@roadmap-run-slice`, `@roadmap-run-section`, repo `AGENTS.md` git handoff) satisfy "name the write" for actions they mandate.
+3. This file's "name the write" applies when **neither** applies — Jira, Slack, org repos, public repos, etc.
+
+**Do not** require the human to say "push" when:
+
+- [github-and-remotes.mdc](github-and-remotes.mdc) allows the remote class (e.g. personal private), **and**
+- an active skill or `AGENTS.md` contract requires push (roadmap slice/section close).
 
 | Domain | Rule |
 |--------|------|

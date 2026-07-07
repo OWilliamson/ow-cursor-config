@@ -31,13 +31,14 @@ On collision with an existing file: stop and ask whether to **update in place** 
 | Default branch | No | `main` |
 | Repo visibility | No | `private` |
 | Stance bullets | No | Peer engineer + ask-don't-guess defaults (see template) |
+| Omit chat tone section | No | Default: include `{chat_tone_section}`; omit only if user asks |
 | Destination | If ambiguous | Ask once |
 
 ## Preflight
 
 - [ ] Confirm `{handle}-user.mdc` does not already exist, or user chose update vs archive-replace.
 - [ ] Confirm `github-and-remotes.mdc` is installed as a sibling under `~/.cursor/rules/` (identity rule binds to it).
-- [ ] List other `alwaysApply: true` rules in the destination directory; sum line counts — flag if combined total is disproportionate (target: identity rule body under ~25 lines).
+- [ ] List other `alwaysApply: true` rules in the destination directory; sum line counts — flag if combined total is disproportionate (target: identity rule body under ~40 lines including Chat tone).
 
 ## Emit template
 
@@ -65,6 +66,8 @@ Bindings for [github-and-remotes.mdc](github-and-remotes.mdc) (sibling under `~/
 ## Stance
 
 {stance_bullets}
+
+{chat_tone_section}
 ```
 
 ### Placeholder rules
@@ -75,6 +78,7 @@ Bindings for [github-and-remotes.mdc](github-and-remotes.mdc) (sibling under `~/
 | `{identity_clause}` | If legal/display name or named systems supplied: `; also **{name}** in Jira, Confluence, Slack, and email` — list only systems the user named; omit clause entirely if only handle + GitHub |
 | `{casing_note}` | If variants supplied: ` (also **{Variant}** — match remotes case-insensitively)` — else omit |
 | `{stance_bullets}` | Default unless user overrides: `- **Peer engineer**: direct; assume technical competence.` and `- **Unknown user-specific facts** (policy, secrets, environment, unreleased detail): one focused question — do not guess.` |
+| `{chat_tone_section}` | Default unless user asks to omit — emit the **Chat tone (lowest priority)** block verbatim from [reference-examples.md](reference-examples.md#chat-tone-block-default); do not restate domain-rule requirements here |
 
 ## After writing (tell the user)
 
@@ -90,4 +94,5 @@ Bindings for [github-and-remotes.mdc](github-and-remotes.mdc) (sibling under `~/
 - [ ] Filename is `{handle}-user.mdc`.
 - [ ] Frontmatter: `alwaysApply: true`, one-line `description`.
 - [ ] GitHub section links `github-and-remotes.mdc`.
+- [ ] Chat tone section included unless user asked to omit.
 - [ ] Post-write reminders delivered.

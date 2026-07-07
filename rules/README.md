@@ -16,6 +16,7 @@
 | [technical-why.mdc](technical-why.mdc) | **WHY / explain / understand** questions: mechanism, root cause, or design decision — not perception talk. Apply intelligently. |
 | [diagnose-issues.mdc](diagnose-issues.mdc) | **Issue / investigate / diagnose** requests: credible reports, named causes, no minimization. Apply intelligently. |
 | [itrs-engineer.mdc](itrs-engineer.mdc) | **ITRS engineer** first-party context, internal doc hierarchy (Confluence, Jira, Slack), product scope. Apply intelligently. |
+| [itrs-org-routing.mdc](itrs-org-routing.mdc) | **ITRS information routing** — where to look first (Confluence, Jira, Slack, GitHub, public docs) by topic. Pair with `itrs-engineer.mdc`. Apply intelligently. |
 | [opsview-context.mdc](opsview-context.mdc) | **Opsview monitoring** wording (Opsview not Nagios; OP5 exception) and **invalid opsview.com sources** — scoped by `globs`. |
 | [github-and-remotes.mdc](github-and-remotes.mdc) | **GitHub** read order (MCP → SSH → HTTP), commit/PR prose, personal-account repo classes and write policy (reads account from identity rule). Apply intelligently. |
 

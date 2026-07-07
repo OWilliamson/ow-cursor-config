@@ -10,7 +10,7 @@
 |--------|---------|
 | **`repo-`** | Repository structure, policy, cleanup, conventions |
 | **`script-`** | Scripts and small tooling code review |
-| **`cursor-`** | Cursor meta (identity rule scaffold, session retro, skills and rules validate/improve, workflow review, UI rules migration) |
+| **`cursor-`** | Cursor meta (identity rule scaffold, session retro, skills and rules validate/improve, workflow review, UI rules migration, context compression, delegation, tooling picker, profile install) |
 
 ## Skill packages
 
@@ -25,8 +25,15 @@
 | [cursor-validate-skill/](cursor-validate-skill/) | **Mechanical pass/fail audit** of a `SKILL.md` package against vendored norms; chat report with findings keyed to norm IDs. |
 | [cursor-improve-skill/](cursor-improve-skill/) | **Editorial refactor + apply** for a `SKILL.md` package; post-change capabilities and usage report. |
 | [cursor-convert-ui-rules/](cursor-convert-ui-rules/) | **Migrates** Settings “User Rules” paste into `.mdc` files (manual invocation only). |
+| [cursor-compress-context/](cursor-compress-context/) | **Compresses** always-on context files (e.g. `AGENTS.md`, alwaysApply rules) while preserving code blocks, paths, and URLs; backs up originals. |
+| [cursor-delegate/](cursor-delegate/) | **Delegation guide** — when to use Task subagents vs main thread and structured return contracts. |
+| [cursor-install-profile-rules/](cursor-install-profile-rules/) | **Install** shipped rules from this repo into `~/.cursor/rules/` via scripts. |
+| [cursor-install-profile-skills/](cursor-install-profile-skills/) | **Install** shipped skills from this repo into `~/.cursor/skills/` via scripts. |
+| [cursor-prune-profile-tooling/](cursor-prune-profile-tooling/) | **Prune** profile rules or skills retired from the bundle manifest. |
+| [cursor-tooling-help/](cursor-tooling-help/) | **One-shot tool picker** — which skill, rule, hook, or workflow fits a goal. |
 | [cursor-validate-rule/](cursor-validate-rule/) | **Read-only audit** of a Cursor rule (`.mdc`) against authoring norms; explicit `/cursor-validate-rule` or `@cursor-validate-rule` (`disable-model-invocation`). |
 | [cursor-improve-rule/](cursor-improve-rule/) | **Refactors** a rule (`.mdc`) for clarity and less drift before shipping; explicit `/cursor-improve-rule` or `@cursor-improve-rule` (`disable-model-invocation`). |
+| [customer-explanation/](customer-explanation/) | **Drafts** concise customer-facing technical explanations from internal context (no internal links or gap-focused language). |
 
 **Tooling philosophy** belongs in each repo's **`AGENTS.md` → Tooling profile** (the former `repo-tooling-invariants` rule is archived pending rethink — see [`archive/superseded-rules/`](../../archive/superseded-rules/)).
 
@@ -40,5 +47,10 @@
 | `repo-convention-change/`, `repo-cleanup/` | `reference.md` (and `repo-convention-change/README.md`). |
 | `cursor-convert-ui-rules/` | `reference-hub.md`. |
 | `cursor-create-identity-rule/` | `reference-hub.md`, `reference-examples.md` — template, preflight, and worked examples. |
+| `cursor-compress-context/` | `reference-compression-rules.md` — preserve vs compress rules for always-on files. |
+| `cursor-delegate/` | `reference-delegation.md` — subagent routing and output contracts. |
+| `cursor-tooling-help/` | `reference-tool-picker.md` — decision tables for skills, rules, hooks, and profile install. |
+| `customer-explanation/` | `reference-public-docs.md`, `examples.md` — tone, structure, and sample outputs. |
+| `scripts/` (repo root) | `profile-tooling.md`, install/prune wrappers, `generate-bundle-manifest.py` — see [../scripts/profile-tooling.md](../scripts/profile-tooling.md). |
 | `script-review/` | `reference-rubric.md`. |
 | `*/reference.md`, `*/reference-checklist.md`, `*/reference-report-skeleton.md`, `*/reference-cursor-authoring-norms.md`, `*/reference-examples.md`, `*/README.md` | Other skills: extra checklists and references loaded when the skill points to them. |

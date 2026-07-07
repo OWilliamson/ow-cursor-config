@@ -1,0 +1,52 @@
+---
+description: Apply when searching ITRS Confluence, Jira, Slack, GitHub, or public docs to find org knowledge, runbooks, tickets, or product documentation.
+alwaysApply: false
+---
+
+# ITRS org routing
+
+Topic-first routing for ITRS information sources. Pair with [itrs-engineer.mdc](itrs-engineer.mdc) for engineer stance. Indexes: [reference-itrs-org-routing.md](reference-itrs-org-routing.md).
+
+## Systems and access
+
+| System | Entry | MCP / access |
+|--------|-------|----------------|
+| Confluence + Jira | Your org Atlassian cloud URL | Atlassian MCP `search` (default); JQL/CQL with your `cloudId` when scoped |
+| Slack | itrs.slack.com | `slack_search_public_and_private` (keyword; use `in:#channel`) |
+| GitHub org | https://github.com/ITRS-Group | GitHub MCP; org repos read-only per [github-and-remotes.mdc](github-and-remotes.mdc) |
+| Public docs | https://docs.itrsgroup.com/docs/ | Web fetch; `/current/` or `/latest/` unless version pinned |
+| Support KB | https://support.itrsgroup.com | Web; customer-facing articles |
+
+Also: **devdocs.itrsgroup.com** (internal engineering docs; may need auth). **CA** is ICE (org navigation), not product technical docs.
+
+## Where to look
+
+| Looking for… | 1st | 2nd | 3rd |
+|--------------|-----|-----|-----|
+| Code in this workspace | This repo | Named `ITRS-Group` repo | ENG Confluence |
+| Supported product behaviour | docs.itrsgroup.com | ServiceTeam / ENG Confluence | devdocs |
+| Opsview DR / HA / deploy playbooks | ServiceTeam Confluence | `#support-help-opsview` | support.itrsgroup.com |
+| Opsview Cloud / IAX SaaS / CPaaS (ITRS-hosted) | CloudOps Confluence | REP Jira | Public IAX/Opsview docs |
+| Geneos release / GA process | dev (`Geneos GA*`) | `#geneos-ga-release` | docs.itrsgroup.com/docs/all/ |
+| Bugs / fix history | Jira (`OP`, `VI`, `REP`, …) | GitHub links in ticket | Slack thread |
+| Recent workaround / who knows | Slack | ServiceTeam | Jira |
+| Architecture / eng standards | ENG Confluence | GitHub | Public docs |
+| Which Confluence space? | ENG / ServiceTeam / CloudOps overview | Rovo search | CA/ICE overview |
+
+## Access fallbacks
+
+| Signal | Action |
+|--------|--------|
+| Atlassian auth error or empty results | Note possible missing access; try public docs, repo, GitHub |
+| GitHub 404 on private repo | May lack access; try public sibling repo or ask user |
+| Slack MCP unavailable | Skip Slack; use Confluence/Jira/repo |
+| Only public docs reachable | Use them; flag internal material may exist but was not searchable |
+
+## Excuse → reality
+
+| Excuse | Reality |
+|--------|---------|
+| "CA/ICE will have the product answer." | CA is corporate navigation; use ENG, ServiceTeam, or CloudOps. |
+| "Internal Confluence beats public docs for supported behaviour." | Public docs are authoritative for customer-visible behaviour. |
+| "Search failed — nothing exists." | May be access-limited; fall back per table above. |
+| "I'll search all of Slack." | Use product channels (`#support-help-opsview`, etc.) and keywords. |

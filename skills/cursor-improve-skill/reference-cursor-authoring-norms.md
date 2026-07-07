@@ -1,6 +1,6 @@
 # Cursor skill authoring norms
 
-Vendored from Cursor create-skill; last synced 2026-05-12.
+Vendored from Cursor create-skill; last synced 2026-07-07.
 
 These norms are the canonical master for `cursor-validate-skill`, and copied byte-identically into `cursor-improve-skill` and `cursor-test-skill`.
 
@@ -37,6 +37,9 @@ These norms are the canonical master for `cursor-validate-skill`, and copied byt
 | `CS-ANTI-WIN-PATHS` | no Windows-style backslash paths in docs or scripts | Suggestion |
 | `CS-TERMINOLOGY` | one term per concept throughout; no synonym drift | Suggestion |
 | `CS-NO-TIME-BOMBS` | no time-sensitive phrases ("before August 2025...") unless in a dated legacy section | Suggestion |
+| `CS-BOUNDARIES-EXPLICIT` | skill states what it does **not** do (no git commit, no send email, no push, output-only, etc.) in a **Boundaries** or **Non-goals** section | Suggestion |
+| `CS-AUTO-CLARITY` | skills that define a communication mode, output format, or terse style include **Auto-Clarity**: when to drop the mode (security, irreversible ops, ambiguity) and when to resume | Suggestion |
+| `CS-NO-FAKE-ABBREV` | prose does not invent shorthands (`cfg`, `impl`, `req`) expecting token savings; compress structure instead | Nice to have |
 
 ## Frontmatter and description guidance
 
@@ -49,6 +52,8 @@ These norms are the canonical master for `cursor-validate-skill`, and copied byt
 ## Structure guidance
 
 - Opening sections should state when to use, required inputs, definition of done, and non-goals.
+- **Boundaries:** state side effects the skill must not perform (commit, push, send, mutate external systems). Non-goals alone may suffice if equally explicit.
+- **Auto-Clarity:** for mode or format skills, list when to temporarily revert to normal prose (security warnings, irreversible confirmations, ordered steps where compression causes misread).
 - Workflows should be ordered by dependency.
 - Checklists should be action or verify rows, not essays.
 - Main files should stay lean; long detail belongs in sibling reference files or scripts.
@@ -65,6 +70,8 @@ These norms are the canonical master for `cursor-validate-skill`, and copied byt
 - Verify every link cited from `SKILL.md` resolves inside the package.
 - Flag any `@path` links in the body unless they are intentionally force-loaded.
 - For scripts, verify dependency names are explicitly documented.
+- For mode or output-format skills, verify **Auto-Clarity** and **Boundaries** sections exist (`CS-AUTO-CLARITY`, `CS-BOUNDARIES-EXPLICIT`).
+- Scan prose for invented abbreviations in instructions (`CS-NO-FAKE-ABBREV`).
 
 ## Reporting rules for validate
 
