@@ -16,9 +16,6 @@ skills:
   - cursor-delegate
   - cursor-improve-rule
   - cursor-improve-skill
-  - cursor-install-profile-rules
-  - cursor-install-profile-skills
-  - cursor-prune-profile-tooling
   - cursor-session-retro
   - cursor-tooling-help
   - cursor-validate-rule

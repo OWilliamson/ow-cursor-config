@@ -2,7 +2,7 @@
 
 **What this is:** Each skill lives in **its own subdirectory**. That directory is the skill’s package: **`SKILL.md`** (YAML frontmatter: `name`, `description`, optional flags) plus **all supporting files shipped with the skill**—scripts, checklists, reference markdown, nested folders such as `scripts/`, and any other assets the skill relies on—**co-located** under that same folder. Skills are **on-demand playbooks**—the agent loads them when the user `@`-mentions the skill or when the description matches the task. Keeping supporting material with `SKILL.md` supports progressive disclosure.
 
-**Install note:** Copy skill folders to `~/.cursor/skills/` or `.cursor/skills/` (or `.agents/skills/` where your Cursor version expects them) so discovery works; see the parent [README.md](../README.md).
+**Install note:** Use [`scripts/install-profile-skills.sh`](../scripts/install-profile-skills.sh) to copy bundle skills to `~/.cursor/skills/`. For rules, use [`scripts/install-profile-rules.sh`](../scripts/install-profile-rules.sh). For agent-assisted install, open this repo as the workspace and use project skills in [`.cursor/skills/`](../.cursor/skills/) — see [scripts/profile-tooling.md](../scripts/profile-tooling.md) and [AGENTS.md](../AGENTS.md).
 
 ## Naming prefixes
 
@@ -10,7 +10,7 @@
 |--------|---------|
 | **`repo-`** | Repository structure, policy, cleanup, conventions |
 | **`script-`** | Scripts and small tooling code review |
-| **`cursor-`** | Cursor meta (identity rule scaffold, session retro, skills and rules validate/improve, workflow review, UI rules migration, context compression, delegation, tooling picker, profile install) |
+| **`cursor-`** | Cursor meta (session retro, validate/improve, delegate, tooling picker, compress context, …) |
 
 ## Skill packages
 
@@ -27,15 +27,12 @@
 | [cursor-convert-ui-rules/](cursor-convert-ui-rules/) | **Migrates** Settings “User Rules” paste into `.mdc` files (manual invocation only). |
 | [cursor-compress-context/](cursor-compress-context/) | **Compresses** always-on context files (e.g. `AGENTS.md`, alwaysApply rules) while preserving code blocks, paths, and URLs; backs up originals. |
 | [cursor-delegate/](cursor-delegate/) | **Delegation guide** — when to use Task subagents vs main thread and structured return contracts. |
-| [cursor-install-profile-rules/](cursor-install-profile-rules/) | **Install** shipped rules from this repo into `~/.cursor/rules/` via scripts. |
-| [cursor-install-profile-skills/](cursor-install-profile-skills/) | **Install** shipped skills from this repo into `~/.cursor/skills/` via scripts. |
-| [cursor-prune-profile-tooling/](cursor-prune-profile-tooling/) | **Prune** profile rules or skills retired from the bundle manifest. |
 | [cursor-tooling-help/](cursor-tooling-help/) | **One-shot tool picker** — which skill, rule, hook, or workflow fits a goal. |
 | [cursor-validate-rule/](cursor-validate-rule/) | **Read-only audit** of a Cursor rule (`.mdc`) against authoring norms; explicit `/cursor-validate-rule` or `@cursor-validate-rule` (`disable-model-invocation`). |
 | [cursor-improve-rule/](cursor-improve-rule/) | **Refactors** a rule (`.mdc`) for clarity and less drift before shipping; explicit `/cursor-improve-rule` or `@cursor-improve-rule` (`disable-model-invocation`). |
 | [customer-explanation/](customer-explanation/) | **Drafts** concise customer-facing technical explanations from internal context (no internal links or gap-focused language). |
 
-**Tooling philosophy** belongs in each repo's **`AGENTS.md` → Tooling profile** (the former `repo-tooling-invariants` rule is archived pending rethink — see [`archive/superseded-rules/`](../../archive/superseded-rules/)).
+Install/prune project skills (`cursor-install-profile-*`, `cursor-prune-profile-tooling`) live in [`.cursor/skills/`](../.cursor/skills/) — not under this `skills/` tree.
 
 ### Supporting assets (by skill)
 

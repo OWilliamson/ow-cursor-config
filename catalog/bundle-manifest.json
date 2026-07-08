@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-07-07T17:11:48Z",
+  "generated_at": "2026-07-08T08:53:11Z",
   "rules": [
     "diagnose-issues.mdc",
     "external-systems-read-only.mdc",
@@ -17,9 +17,6 @@
     "cursor-delegate",
     "cursor-improve-rule",
     "cursor-improve-skill",
-    "cursor-install-profile-rules",
-    "cursor-install-profile-skills",
-    "cursor-prune-profile-tooling",
     "cursor-session-retro",
     "cursor-tooling-help",
     "cursor-validate-rule",

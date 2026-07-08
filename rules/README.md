@@ -4,6 +4,8 @@
 
 **Scope:** Generic baseline rules for a personal Cursor profile. Merge or replace carefully when syncing with a project's `.cursor/rules/`. Personal identity (`{handle}-user.mdc`) is **not** shipped here — create it with the [`cursor-create-identity-rule`](../skills/cursor-create-identity-rule/) skill and install under `~/.cursor/rules/`.
 
+**Install:** `bash scripts/install-profile-rules.sh` — see [scripts/profile-tooling.md](../scripts/profile-tooling.md). For `@cursor-install-profile-rules`, open this repo as the workspace (project skill in `.cursor/skills/`).
+
 **Activation:** `alwaysApply: true` = always on. `alwaysApply: false` with `globs` = auto-attached when matching files are in context. `alwaysApply: false` with a `description` and no `globs` = apply intelligently (agent pulls in when relevant). No `description` and no `globs` = manual `@` mention only.
 
 **Related:** Agent Skills (separate packages with `SKILL.md` and co-located references) live in the sibling [`../skills/`](../skills/) tree, not under this `rules/` folder.

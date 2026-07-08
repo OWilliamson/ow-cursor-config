@@ -1,6 +1,6 @@
 # Profile install and prune tooling
 
-Scripts and skills for copying **rules** and **skills** from this repository into the Cursor user profile (`~/.cursor/` on Linux/macOS; `%USERPROFILE%\.cursor` on Windows).
+Scripts and **project skills** for copying **rules** and **skills** from this repository into the Cursor user profile (`~/.cursor/` on Linux/macOS; `%USERPROFILE%\.cursor` on Windows).
 
 **Out of scope:** hooks, `hooks.json`, commands, subagents, and any “install everything” one-shot.
 
@@ -14,6 +14,7 @@ Scripts and skills for copying **rules** and **skills** from this repository int
 | [`scripts/lib/profile-tooling.py`](lib/profile-tooling.py) | Shared install/prune implementation (Python 3 stdlib) |
 | `scripts/install-profile-*.sh` / `.ps1` | Platform wrappers |
 | `scripts/prune-profile-*.sh` / `.ps1` | Platform wrappers |
+| [`.cursor/skills/`](../.cursor/skills/) | **Project-only** install/prune agent skills (not copied to profile) |
 
 ## Environment variables
 
@@ -37,7 +38,7 @@ Regenerate after adding or removing rules/skills:
 python3 scripts/generate-bundle-manifest.py
 ```
 
-Publish maintainers should run this before shipping to `ow-cursor-config`.
+Hub maintainers run this in `cursor-config-generic/public/` before publish.
 
 ## Install
 
@@ -78,18 +79,16 @@ pwsh -File scripts/prune-profile-rules.ps1 -DryRun
 pwsh -File scripts/prune-profile-skills.ps1
 ```
 
-## Agent skills
+## Project skills (this workspace only)
+
+Open **ow-cursor-config** as the Cursor workspace. Skills under `.cursor/skills/` are **not** installed to `~/.cursor/skills/`:
 
 | Skill | Use when |
 |-------|----------|
-| [`cursor-install-profile-rules`](../skills/cursor-install-profile-rules/) | Install or update shipped rules via script |
-| [`cursor-install-profile-skills`](../skills/cursor-install-profile-skills/) | Install or update shipped skills via script |
-| [`cursor-prune-profile-tooling`](../skills/cursor-prune-profile-tooling/) | Prune retired rules or skills (input: `rules` or `skills`) |
+| `@cursor-install-profile-rules` | Install or update shipped rules via script |
+| `@cursor-install-profile-skills` | Install or update shipped skills via script |
+| `@cursor-prune-profile-tooling` | Prune retired rules or skills (input: `rules` or `skills`) |
 
-**Bootstrap:** run `install-profile-skills` once (script or skill) so the install/prune skills are available under `~/.cursor/skills/`.
+See [AGENTS.md](../AGENTS.md).
 
-**Identity rules** (`{handle}-user.mdc`) are not shipped here — use [`cursor-create-identity-rule`](../skills/cursor-create-identity-rule/) after baseline rules are installed.
-
-## Local development
-
-Set `OW_CURSOR_CONFIG` to this repository root when running install or prune scripts from a checkout.
+**Identity rules** (`{handle}-user.mdc`) are not shipped in `rules/` — use `@cursor-create-identity-rule` from the profile after installing skills.

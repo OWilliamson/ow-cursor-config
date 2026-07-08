@@ -38,16 +38,18 @@
 | When to spawn explore / shell / Task | `@cursor-delegate` | Vanilla explore without contract |
 | Subagent notes in repo | `subagents/README.md` in this repo | |
 
-## Profile install (ow-cursor-config)
+## Profile install (ow-cursor-config workspace)
+
+Open **this repo** as the Cursor workspace. Project skills in `.cursor/skills/` (not `~/.cursor/skills/`):
 
 | Goal | Use | Not |
 |------|-----|-----|
-| Install/update bundle rules to profile | `@cursor-install-profile-rules` | Manual one-off `cp` |
-| Install/update bundle skills to profile | `@cursor-install-profile-skills` | `skills-cursor/` |
-| Prune retired bundle rules or skills | `@cursor-prune-profile-tooling` (input `rules` or `skills`) | Deleting user-authored files |
-| Personal identity rule | `@cursor-create-identity-rule` | Shipped rules tree |
+| Install/update bundle rules | `@cursor-install-profile-rules` | Global profile skill |
+| Install/update bundle skills | `@cursor-install-profile-skills` | `skills-cursor/` |
+| Prune retired bundle items | `@cursor-prune-profile-tooling` (input `rules` or `skills`) | Deleting user-authored files |
+| Personal identity rule | `@cursor-create-identity-rule` (from profile after install) | Shipped rules tree |
 
-Scripts: `scripts/profile-tooling.md` in this repo.
+Scripts (any shell): [scripts/profile-tooling.md](../../scripts/profile-tooling.md).
 
 ## Prefix cheat sheet
 
