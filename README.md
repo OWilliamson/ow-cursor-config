@@ -1,4 +1,4 @@
-# Generic Cursor tooling
+# Generic Cursor Tooling
 
 This is a collection of cursor and agent tooling which can be used or adapted to suit your project and can be used in your **global** Cursor profile: rules, slash commands, skills, hooks, and subagent notes.
 
