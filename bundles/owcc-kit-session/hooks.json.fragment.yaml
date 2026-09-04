@@ -1,0 +1,17 @@
+version: 1
+hooks:
+  beforeSubmitPrompt:
+  - command: ./hooks/agent-retro-meter/run.sh
+    timeout: 5
+  postToolUse:
+  - command: ./hooks/agent-retro-meter/run.sh
+    timeout: 5
+  sessionStart:
+  - command: ./hooks/agent-retro-meter/run.sh
+    timeout: 5
+  stop:
+  - command: ./hooks/agent-retro-meter/run.sh
+    timeout: 15
+  subagentStop:
+  - command: ./hooks/agent-retro-meter/run.sh
+    timeout: 15

@@ -1,0 +1,80 @@
+skill: owcc-plan-improve
+steps:
+  - id: "5.3.1"
+    title: Resolve target and scope
+    actions:
+      - DECIDE target per DECISIONS §1
+      - IF new plan THEN CREATE file from OUTPUTS.md Template skeleton; SKIP TO 5.3.4
+      - DECIDE edit scope per DECISIONS §2
+    outcome: Plan path (or new file), edit scope, new vs existing
+    decisions:
+      - DECISIONS.md#1-target-plan
+      - DECISIONS.md#2-edit-scope
+  - id: "5.3.2"
+    title: Chunk report and sizing (existing plan)
+    actions:
+      - IF empty skeleton THEN SKIP TO 5.3.4
+      - RUN plan-chunk-report.py --json
+      - DECIDE sizing per DECISIONS §3 → §4 when auto → §5
+      - IF multi-file THEN DECIDE DECISIONS §6
+      - Note flat vs phased intent (DECISIONS §7)
+      - Note chunk flags for 5.3.4 (DECISIONS §8)
+    outcome: Chunk JSON reviewed; lean or full chosen; multi-file and phase shape decided
+    decisions:
+      - DECISIONS.md#3-sizing-mode-from-invoke
+      - DECISIONS.md#4-auto-pick-lean-or-full
+      - DECISIONS.md#5-lean-vs-full-plan-shape
+      - DECISIONS.md#6-multi-plan-strategy
+      - DECISIONS.md#7-flat-vs-phased-frontmatter
+      - DECISIONS.md#8-chunk-report-flag-response
+  - id: "5.3.3"
+    title: Classify and inventory
+    actions:
+      - DECIDE plan class (DECISIONS §9)
+      - Confirm sections to fill (DECISIONS §10; OUTPUTS.md)
+      - READ OUTPUTS.md for Title H1, heading order, Stages sub-structure
+      - Build substance inventory (DECISIONS §11–§12); do NOT invent requirements
+    outcome: Plan class, section checklist, substance inventory (item → class → section)
+    decisions:
+      - DECISIONS.md#9-plan-class
+      - DECISIONS.md#10-section-profile-by-class
+      - DECISIONS.md#11-inventory-substance-class
+      - DECISIONS.md#12-map-substance-to-plan-section
+  - id: "5.3.4"
+    title: Restructure and migrate
+    actions:
+      - Skeleton — Normalize Title H1 + §1–10
+      - Migrate inventory; legacy headings per DECISIONS §17
+      - Contracts per DECISIONS §10 and OUTPUTS.md
+      - Frontmatter rescale; DECISIONS §15 before removing todos
+      - Chunk-driven reshape per DECISIONS §8
+      - Align cross-references
+      - Deduplicate per DECISIONS §16
+      - Strip per DECISIONS §13
+      - Fidelity gate per DECISIONS §18
+    outcome: OUTPUTS contracts satisfied; inventory complete; operator chrome stripped
+    decisions:
+      - DECISIONS.md#14-restructure-situation-response
+      - DECISIONS.md#15-relocate-before-removing-todos
+      - DECISIONS.md#16-body-vs-yaml-deduplication
+      - DECISIONS.md#13-protect-strip-or-migrate-content
+      - DECISIONS.md#17-legacy-heading-migration
+      - DECISIONS.md#18-fidelity-gate
+  - id: "5.3.5"
+    title: Validate
+    actions:
+      - IF 5.3.2 skipped or material todo/phase change THEN re-RUN chunk report
+      - RUN qualitative (hygiene) + structure scripts --json — each once; do NOT write validation.json
+      - Fix errors; RETURN TO script step IF still failing
+      - READ plan top to bottom for coherence
+      - IF problems THEN MODIFY and RETURN TO script step
+    outcome: Scripts pass, plan reads coherently, or blockers documented
+    decisions:
+      - DECISIONS.md#8-chunk-report-flag-response
+  - id: "5.3.6"
+    title: Report
+    actions:
+      - OUTPUT short chat delta per RESPONSE.md
+    outcome: Operator can build or re-invoke improve
+    decisions:
+      - DECISIONS.md#18-fidelity-gate

@@ -2,6 +2,49 @@
 
 Release history for this repository. Newest day at top.
 
+## 2026-09-04
+
+### Summary
+
+Renamed shipped skills to the `owcc-*` prefix, added plan-authoring skills and kit-based profile install (`owcc-kit-*` under `bundles/`), and replaced the old per-tree install/prune wrappers with `install-profile-kit.sh` / `prune-profile-kit.sh`.
+
+### Added
+
+- `skills/owcc-plan-build/` — build or complete a Cursor plan from intake through closeout
+- `skills/owcc-plan-improve/` — reshape an existing plan
+- `skills/owcc-plan-triage/` — harvest and patch plan problems
+- `skills/owcc-plan-verification-cursor/` — Cursor-native plan verification and closeout
+- `skills/owcc-plan-validation-report/` — plan validation report artifacts
+- `skills/owcc-plan-review-execution/` — review whether a plan succeeded as specified
+- `skills/owcc-skill-modify/` — surgical META-first edits to an existing skill package
+- `skills/owcc-prose-strip-tropes/` — audit or rewrite LLM writing tropes
+- `bundles/` — per-kit symlink trees (`owcc-kit-starter`, `author`, `plan`, `repo`, `dev`, `itrs`, `session`)
+- `scripts/install-profile-kit.sh`, `scripts/prune-profile-kit.sh`, `scripts/lib/profile_kits_lib.py` — kit install and prune
+
+### Removed
+
+- `skills/cursor-*`, `skills/customer-explanation/`, `skills/repo-*`, `skills/script-review/` — superseded by `owcc-*` packages
+- `scripts/install-profile-rules.sh`, `scripts/install-profile-skills.sh`, `scripts/prune-profile-rules.sh`, `scripts/prune-profile-skills.sh` and PowerShell twins — use kit scripts
+
+### Changed
+
+- `catalog/bundle-manifest.yaml` / `.json` — v2 kit catalog (named `owcc-kit-*` bundles)
+- `scripts/profile-tooling.md` — kit install/prune reference
+- `scripts/generate-bundle-manifest.py` — retired; catalog ships with the repo
+- `rules/itrs-engineer.mdc` — stance line on standing answers without a product tour
+- `hooks/agent-retro-meter/` — nudge text points at `/owcc-session-retro`
+
+### README updates
+
+- `README.md` — kit install, `bundles/` layout, `owcc-*` skills
+- `skills/README.md` — `owcc-*` inventory
+- `hooks/README.md` — pairing with `owcc-session-retro`
+- `rules/README.md` — identity skill name; drop hub archive links
+- `commands/README.md` — empty-state without hub recovery steps
+- `subagents/README.md` — point at `/owcc-agent-delegate`
+- `hooks/agent-retro-meter/README.md` — pair with `owcc-session-retro`
+- `scripts/profile-tooling.md` — shipped with tooling (not a root README)
+
 ## 2026-07-07
 
 ### Summary

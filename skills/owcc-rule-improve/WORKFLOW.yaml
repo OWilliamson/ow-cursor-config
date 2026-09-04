@@ -1,0 +1,70 @@
+skill: owcc-rule-improve
+steps:
+  - id: "5.3.1"
+    title: Resolve target AND scope
+    actions:
+      - DECIDE target per DECISIONS §1
+      - DECIDE scope per DECISIONS §2
+      - Confirm .mdc path AND no rename
+      - List linked same-directory siblings
+    outcome: Absolute .mdc path, scope, sibling list
+    decisions:
+      - DECISIONS.md#1-target-rule-file
+      - DECISIONS.md#2-edit-scope
+  - id: "5.3.2"
+    title: Workspace overlap
+    actions:
+      - IF workspace root exists THEN READ AGENTS.md, .cursor/rules/, nearby skills AND ~/.cursor/rules/
+      - ELSE ask once to skip or name a root
+      - Note external policy so improve does NOT duplicate it
+    outcome: Overlap notes or skip
+    decisions:
+      - DECISIONS.md#3-workspace-overlap-read
+  - id: "5.3.3"
+    title: Inventory target AND siblings
+    actions:
+      - READ OUTPUTS.md
+      - Classify .mdc and linked siblings
+      - Build substance inventory
+      - Apply CR-RULE-NO-ORPHANS / REFS-EXIST / SIBLINGS-LEAN
+    outcome: Classification + inventory (item → destination)
+    decisions: []
+  - id: "5.3.4"
+    title: Audit frontmatter AND activation
+    actions:
+      - Parse frontmatter; enforce one-line description
+      - DECIDE activation mode; dead-rule check
+      - State glob match AND non-match samples when globs present
+      - Review always-on budget AND inter-rule conflicts
+    outcome: Activation plan + frontmatter findings ready to apply
+    decisions:
+      - DECISIONS.md#4-activation-mode
+  - id: "5.3.5"
+    title: REWRITE rule
+    actions:
+      - REWRITE body toward OUTPUTS spine
+      - DECIDE description rewrite
+      - DECIDE split strategy IF multi-concern or over budget
+      - DECIDE Excuse→Reality IF discipline-enforcing
+      - Handle linked siblings without silent drops
+    outcome: Lean .mdc matching OUTPUTS; siblings handled
+    decisions:
+      - DECISIONS.md#5-split-strategy
+      - DECISIONS.md#6-description-rewrite
+      - DECISIONS.md#7-discipline-excuse-reality
+  - id: "5.3.6"
+    title: Fidelity gate
+    actions:
+      - Re-scan inventory ⊆ rewritten rule and siblings
+      - DECIDE gaps per DECISIONS §8
+      - IF Block THEN stop; do NOT claim done
+    outcome: Inventory complete or blockers documented
+    decisions:
+      - DECISIONS.md#8-fidelity-disposition
+  - id: "5.3.7"
+    title: Validate AND complete
+    actions:
+      - RUN §6; IF fail THEN RETURN TO failing step, fix, re-validate
+      - IF pass THEN OUTPUT §7
+    outcome: Validation pass (or blockers) AND completion chat
+    decisions: []

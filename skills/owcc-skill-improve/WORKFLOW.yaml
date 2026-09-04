@@ -1,0 +1,101 @@
+skill: owcc-skill-improve
+steps:
+  - id: "5.3.1"
+    title: Resolve target AND scope
+    actions:
+      - DECIDE target per DECISIONS §1
+      - DECIDE scope per DECISIONS §2
+      - Confirm no rename; list package files including scripts/
+    outcome: Absolute path, scope, file list
+    decisions:
+      - DECISIONS.md#1-target-skill-directory
+      - DECISIONS.md#2-edit-scope
+  - id: "5.3.2"
+    title: Inventory against OUTPUTS roles
+    actions:
+      - READ OUTPUTS.md
+      - Classify each file as allowed role, scripts/, legacy, or orphan
+      - Build substance inventory
+    outcome: Classification + inventory (item → destination)
+    decisions: []
+  - id: "5.3.3"
+    title: Workspace overlap
+    actions:
+      - IF workspace root exists THEN READ AGENTS.md, .cursor/rules, nearby skills
+      - ELSE ask once to skip or name a root
+      - Note external policy so improve does NOT duplicate it
+    outcome: Overlap notes or skip
+    decisions:
+      - DECISIONS.md#3-workspace-overlap-read
+  - id: "5.3.4"
+    title: DECIDE optional siblings
+    actions:
+      - DECIDE optional siblings per DECISIONS §4
+      - Always require SKILL, RESPONSE, VALIDATION, META, WORKFLOW.yaml
+      - Force §1–7; no live reference-* after migrate
+    outcome: Sibling checklist (CREATE / KEEP / OMIT)
+    decisions:
+      - DECISIONS.md#4-optional-siblings-for-target
+  - id: "5.3.5"
+    title: Plan fidelity map
+    actions:
+      - Map inventory to SKILL §1–7 or sibling roles
+      - Mark legacy for relocate
+    outcome: Destination map with no silent drops
+    decisions:
+      - DECISIONS.md#5-sibling-disposition
+  - id: "5.3.6"
+    title: REWRITE target SKILL.md
+    actions:
+      - REWRITE to §1–7 per OUTPUTS SKILL contract
+      - DECIDE description per DECISIONS §6
+      - Move Principles / Definition of done / Non-goals into §5.2, §6, §4
+      - WRITE §5.3 with multilevel ids, Outcome lines, operators, DECIDE links
+      - IF discipline-enforcing THEN DECIDE DECISIONS §7
+      - IF scope IS siblings-only THEN SKIP TO 5.3.7 after link-only SKILL fixes
+    outcome: §1–7 SKILL; trigger-only description
+    decisions:
+      - DECISIONS.md#6-description-rewrite
+      - DECISIONS.md#7-discipline-excusereality
+  - id: "5.3.7"
+    title: WRITE OR REWRITE semantic siblings
+    actions:
+      - CREATE/REWRITE each required AND chosen role per OUTPUTS including WORKFLOW.yaml
+      - DECIDE disposition per DECISIONS §5
+      - Migrate reference-* substance; WRITE META (do NOT link from SKILL)
+      - IF EXAMPLES kept THEN prune stale ones
+    outcome: Sibling set filled; WORKFLOW.yaml present; legacy relocated
+    decisions:
+      - DECISIONS.md#5-sibling-disposition
+  - id: "5.3.8"
+    title: Scripts hygiene
+    actions:
+      - IF no scripts/ THEN SKIP TO 5.3.9
+      - Trim dead code; top comment = purpose, deps, execute-vs-read
+      - Cite from §5.3 or §6
+      - Apply CS-SCRIPT-SAFETY AND CS-PKG-SCRIPTS-DOCUMENTED
+    outcome: Scripts documented or N/A
+    decisions: []
+  - id: "5.3.9"
+    title: Strip legacy members
+    actions:
+      - Archive THEN DELETE live reference-*.md and non-role orphans
+      - Confirm no SKILL links to removed files
+    outcome: Only allowed roles (+ scripts if any)
+    decisions: []
+  - id: "5.3.10"
+    title: Fidelity gate
+    actions:
+      - Re-scan inventory ⊆ package
+      - DECIDE gaps per DECISIONS §8
+      - IF Block THEN stop; do NOT claim done
+    outcome: Inventory complete or blockers documented
+    decisions:
+      - DECISIONS.md#8-fidelity-disposition
+  - id: "5.3.11"
+    title: Validate AND complete
+    actions:
+      - RUN §6; IF fail THEN RETURN TO failing step, fix, re-validate
+      - IF pass THEN OUTPUT §7
+    outcome: Validation pass (or blockers) AND completion chat
+    decisions: []

@@ -1,0 +1,51 @@
+skill: owcc-plan-triage
+steps:
+  - id: "5.3.1"
+    title: Resolve target
+    actions:
+      - DECIDE target per DECISIONS §1
+    outcome: Absolute plan path
+    decisions:
+      - DECISIONS.md#1-target-plan
+  - id: "5.3.2"
+    title: Harvest session asks
+    actions:
+      - Collect user-only asks per DECISIONS §2
+      - Apply supersession
+      - Map present|partial|absent
+    outcome: Session-ask inventory with status and expected locus
+    decisions:
+      - DECISIONS.md#2-session-intent-harvest
+  - id: "5.3.3"
+    title: Read plan and spot-check workspace
+    actions:
+      - READ frontmatter and body
+      - Bounded spot-checks for axes 3–4
+    outcome: Plan context loaded; bounded workspace notes ready
+    decisions:
+      - DECISIONS.md#4-four-axes
+  - id: "5.3.4"
+    title: Interrogate four axes
+    actions:
+      - RUN axes 1–4 per DECISIONS §4
+      - DECIDE severity per DECISIONS §3
+    outcome: Findings list with axis, severity, locus
+    decisions:
+      - DECISIONS.md#4-four-axes
+      - DECISIONS.md#3-severity
+  - id: "5.3.5"
+    title: Patch Shape B
+    actions:
+      - MODIFY clear findings per DECISIONS §5
+      - Honor patch limits DECISIONS §6
+      - IF ambiguous THEN ask-user only
+    outcome: Clear findings patched; ambiguous items reported only
+    decisions:
+      - DECISIONS.md#5-patch-matrix
+      - DECISIONS.md#6-patch-limits
+  - id: "5.3.6"
+    title: Report
+    actions:
+      - OUTPUT chat delta per RESPONSE.md
+    outcome: Operator sees findings, patches, remaining ask-user/blockers
+    decisions: []

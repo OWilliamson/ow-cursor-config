@@ -1,0 +1,45 @@
+skill: owcc-skill-validate
+steps:
+  - id: "5.3.1"
+    title: Resolve target
+    actions:
+      - DECIDE target per DECISIONS §1
+      - Confirm absolute path or pasted handle
+    outcome: Unambiguous target path or pasted package handle
+    decisions:
+      - DECISIONS.md#1-target-skill-directory
+  - id: "5.3.2"
+    title: Inventory package
+    actions:
+      - List all files IN the target directory
+      - Classify each file (role, legacy, orphan, script)
+    outcome: Inventory table ready for the report
+    decisions: []
+  - id: "5.3.3"
+    title: RUN improve validation rubric
+    actions:
+      - READ ../owcc-skill-improve/VALIDATION.md
+      - READ local VALIDATION.md overrides
+      - RUN mechanical commands against the target
+      - Apply CS-* norms; shape always Critical
+      - Answer filtered agent questions per DECISIONS §3
+    outcome: Findings draft with severities; passes noted
+    decisions:
+      - DECISIONS.md#2-shape-policy
+      - DECISIONS.md#3-agent-question-filter
+  - id: "5.3.4"
+    title: Label AND cap findings
+    actions:
+      - Label Critical, Suggestion, or Nice to have
+      - Mark speculative items
+      - Cap detailed findings at seven
+      - Final sanity pass
+    outcome: Report-ready findings set
+    decisions: []
+  - id: "5.3.5"
+    title: Complete
+    actions:
+      - OUTPUT chat per RESPONSE.md
+      - Do NOT claim the target was changed
+    outcome: Operator has pass/fail report; target unchanged
+    decisions: []

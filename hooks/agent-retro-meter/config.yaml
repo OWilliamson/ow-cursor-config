@@ -32,7 +32,7 @@
 #   tool-heavy but short plan-style turns.
 #
 # • "Nudge" (composer.nudge) — if true, Cursor may automatically send an extra
-#   user message after the turn (suggesting @cursor-session-retro). If false,
+#   user message after the turn (suggesting @owcc-session-retro). If false,
 #   you still get the JSON log line when thresholds fire, but no auto message.
 #
 # • "require_both" (composer.require_both) — if true, BOTH min_tools and

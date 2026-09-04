@@ -1,0 +1,25 @@
+skill: owcc-plan-validation-report
+steps:
+  - id: "5.3.1"
+    title: Resolve target and sizing
+    actions:
+      - DECIDE target per DECISIONS §1
+      - DECIDE sizing flag per DECISIONS §2
+    outcome: Absolute plan path; sizing lean|full|auto
+    decisions:
+      - DECISIONS.md#1-target-plan
+      - DECISIONS.md#2-sizing-flag
+  - id: "5.3.2"
+    title: Write validation report
+    actions:
+      - RUN plan-write-validation-report.py
+      - Note exit code and result per DECISIONS §3
+    outcome: Report file on disk (or runtime error surfaced)
+    decisions:
+      - DECISIONS.md#3-pass-fail-semantics
+  - id: "5.3.3"
+    title: Report
+    actions:
+      - OUTPUT one chat line per RESPONSE.md
+    outcome: Operator sees path + pass|fail (or error)
+    decisions: []

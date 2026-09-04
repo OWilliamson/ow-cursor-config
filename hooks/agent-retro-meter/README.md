@@ -2,7 +2,7 @@
 
 This package records **per–user-message (generation)** tool usage and wall time in Cursor Agent, compares thresholds from a **YAML config file**, writes **one JSON line per trigger** to a log file, and optionally asks Cursor to **auto-submit a short follow-up** (`followup_message`) suggesting a session retro.
 
-It pairs with the personal skill **`@cursor-session-retro`** ([`~/.cursor/skills/cursor-session-retro/SKILL.md`](../../skills/cursor-session-retro/SKILL.md)), which defines *how* to run a retro once you are nudged or you invoke the skill manually.
+It pairs with the personal skill **`@owcc-session-retro`** ([`~/.cursor/skills/owcc-session-retro/SKILL.md`](../../skills/owcc-session-retro/SKILL.md)), which defines *how* to run a retro once you are nudged or you invoke the skill manually.
 
 ## Glossary for config.yaml
 
@@ -14,7 +14,7 @@ It pairs with the personal skill **`@cursor-session-retro`** ([`~/.cursor/skills
 | **Wall time** (`min_wall_ms`) | Real clock time from **Send** on your message until the agent **finishes** that turn (milliseconds). Catches slow or stuck-feeling runs even when tool count is low. |
 | **Threshold** | A limit you set on tool count and/or wall time. Default is **OR** (either limit can trigger). Set `composer.require_both: true` for **AND** (both must cross)—quieter when plans spike tool count but finish in under your wall clock budget. |
 | **Trigger** | Append **one JSON line** to `paths.log` with model, prompt, reasons, etc. Optionally send a **nudge** (see below). |
-| **Nudge** | If enabled, the `stop` hook returns `followup_message`; Cursor may **auto-submit** that text as the next user message (e.g. suggesting `@cursor-session-retro`). Turn off if you only want silent logging. |
+| **Nudge** | If enabled, the `stop` hook returns `followup_message`; Cursor may **auto-submit** that text as the next user message (e.g. suggesting `@owcc-session-retro`). Turn off if you only want silent logging. |
 | **Subagent** | A **Task** sub-session (explore / shell / …). `subagent.*` keys use Cursor’s metrics for that child run, separate from the main composer turn. |
 
 ## What it does (high level)
@@ -57,7 +57,7 @@ You should have:
 │       ├── run.sh                      # executable
 │       └── meter.py                    # invoked by run.sh
 └── skills/
-    └── cursor-session-retro/
+    └── owcc-session-retro/
         └── SKILL.md                  # retro workflow (optional but recommended)
 ```
 
@@ -134,7 +134,7 @@ See the **comment block at the top of `config.yaml`** for the same glossary in-l
 | `composer.min_tools` | `0` | **Off if 0.** Otherwise: trigger when this turn’s **agent tool call count** (Read, Shell, Grep, …) is **≥** this number. |
 | `composer.min_wall_ms` | `0` | **Off if 0.** Otherwise: trigger when **elapsed ms** for the whole turn (send → stop) is **≥** this. |
 | `composer.require_both` | `false` | If **true**, both `min_tools` and `min_wall_ms` must be **> 0** and **both** crossed before a trigger (**AND**). If either threshold is `0`, AND is skipped (**OR**). |
-| `composer.nudge` | `true` | If **true** and a trigger fires: Cursor may auto-send a follow-up suggesting `@cursor-session-retro`. If **false**: log only. |
+| `composer.nudge` | `true` | If **true** and a trigger fires: Cursor may auto-send a follow-up suggesting `@owcc-session-retro`. If **false**: log only. |
 | `composer.nudge_template` | `null` | **`null`** = built-in English message with `{reasons}`. Or set your own string; must use `{reasons}` where the list of fired rules should appear. |
 | `subagent.min_tools` | `0` | **Off if 0.** For **Task** sub-agents: trigger if Cursor’s `tool_call_count` **≥** this. |
 | `subagent.min_ms` | `0` | **Off if 0.** For **Task** sub-agents: trigger if Cursor’s `duration_ms` **≥** this. |
@@ -242,6 +242,6 @@ You should see one JSON line; the last command’s stdout may include `followup_
 
 ## Related docs
 
-- Retro skill + hook overview: [`~/.cursor/skills/cursor-session-retro/SKILL.md`](../../skills/cursor-session-retro/SKILL.md)
-- YAML keys / schema / extra troubleshooting: [`~/.cursor/skills/cursor-session-retro/reference-hooks.md`](../../skills/cursor-session-retro/reference-hooks.md)
+- Retro skill + hook overview: [`~/.cursor/skills/owcc-session-retro/SKILL.md`](../../skills/owcc-session-retro/SKILL.md)
+- YAML keys / schema / extra troubleshooting: [`~/.cursor/skills/owcc-session-retro/reference-hooks.md`](../../skills/owcc-session-retro/reference-hooks.md)
 - Official hooks: [Cursor Hooks documentation](https://cursor.com/docs/agent/hooks)

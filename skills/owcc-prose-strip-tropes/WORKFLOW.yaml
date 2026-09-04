@@ -1,0 +1,58 @@
+skill: owcc-prose-strip-tropes
+steps:
+  - id: "5.3.1"
+    title: Resolve target
+    actions:
+      - DECIDE target per DECISIONS §1
+    outcome: One target (path, paste buffer, or named chat turn)
+    decisions:
+      - DECISIONS.md#1-target
+  - id: "5.3.2"
+    title: DECIDE mode
+    actions:
+      - DECIDE mode per DECISIONS §2
+    outcome: audit or rewrite
+    decisions:
+      - DECISIONS.md#2-mode
+  - id: "5.3.3"
+    title: Load AND map preserve regions
+    actions:
+      - READ the target
+      - Mark preserve regions per DECISIONS §3
+    outcome: Working text loaded; preserve map ready
+    decisions:
+      - DECISIONS.md#3-preserve
+  - id: "5.3.4"
+    title: RUN trope checks
+    actions:
+      - RUN every category in DECISIONS §4 including dated overlay when present
+      - Record findings with severity per DECISIONS §5
+    outcome: Findings list (may be empty); isolated weak hits marked note
+    decisions:
+      - DECISIONS.md#4-check-categories
+      - DECISIONS.md#5-severity
+  - id: "5.3.5"
+    title: Rewrite OR stop at audit
+    actions:
+      - IF mode IS audit THEN SKIP TO 5.3.7
+      - REWRITE flagged prose per DECISIONS §6
+    outcome: Working copy rewritten, or audit-only skip
+    decisions:
+      - DECISIONS.md#6-rewrite-limits
+  - id: "5.3.6"
+    title: Rescan residue AND persist
+    actions:
+      - RUN categories again including C15
+      - IF residue THEN REWRITE those spans
+      - IF file target THEN MODIFY file
+      - IF paste or chat turn THEN return full text in completion
+    outcome: Residue pass done; artifact persisted or held for chat
+    decisions:
+      - DECISIONS.md#4-check-categories
+      - DECISIONS.md#6-rewrite-limits
+  - id: "5.3.7"
+    title: Report
+    actions:
+      - OUTPUT chat per RESPONSE.md
+    outcome: Operator sees mode, findings, and what changed
+    decisions: []

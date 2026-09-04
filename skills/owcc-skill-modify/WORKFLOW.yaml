@@ -1,0 +1,82 @@
+skill: owcc-skill-modify
+steps:
+  - id: "5.3.1"
+    title: Resolve target
+    actions:
+      - DECIDE target per DECISIONS §1
+      - Confirm SKILL.md EXISTS at package root
+    outcome: Absolute path to target skill directory
+    decisions:
+      - DECISIONS.md#1-target-skill-directory
+  - id: "5.3.2"
+    title: META + WORKFLOW gate
+    actions:
+      - READ target META.md before any other target file
+      - DECIDE gate per DECISIONS §2
+      - IF META absent OR unreadable THEN OUTPUT hard-stop AND exit with zero edits
+      - ELSE extract tree, update rules, scripts, References
+      - Immediately READ target WORKFLOW.yaml
+      - IF WORKFLOW absent OR unreadable THEN OUTPUT hard-stop AND exit with zero edits
+      - ELSE note skill name and step ids for later sync
+    outcome: META AND WORKFLOW loaded, OR hard stop with zero edits
+    decisions:
+      - DECISIONS.md#2-meta-gate
+  - id: "5.3.3"
+    title: Orient from META + WORKFLOW
+    actions:
+      - List package files; compare to META directory tree
+      - Compare WORKFLOW step ids to SKILL §5.3; note pre-existing drift
+      - Note update rules constraining edits
+      - DECIDE reshape vs modify per DECISIONS §6
+      - IF reshape required THEN OUTPUT hard-stop AND exit with zero edits
+    outcome: Orientation notes; proceed, OR hard stop with zero edits
+    decisions:
+      - DECISIONS.md#6-reshape-vs-modify
+  - id: "5.3.4"
+    title: Build change plan
+    actions:
+      - Parse operator input into requested changes
+      - DECIDE change class per DECISIONS §3
+      - Map each change to locus (file + section/role)
+      - IF ambiguous THEN DECIDE DECISIONS §4
+      - Do NOT edit yet
+    outcome: Written change plan (class, loci, out-of-plan exclusions)
+    decisions:
+      - DECISIONS.md#3-change-class
+      - DECISIONS.md#4-ambiguity
+  - id: "5.3.5"
+    title: Apply planned edits
+    actions:
+      - WHILE plan loci remain, MODIFY (or CREATE/DELETE only IF planned)
+      - Honor target META update rules for primary loci
+      - Defer full META/WORKFLOW sync to 5.3.7
+      - IF zero primary edits THEN SKIP TO 5.3.8
+    outcome: Only planned primary loci changed
+    decisions: []
+  - id: "5.3.6"
+    title: Alignment sweep
+    actions:
+      - DECIDE sweep mode per DECISIONS §5
+      - IF non-aim/scope edits THEN verify fit to current §1 AND §4
+      - IF aim/scope edits THEN verify whole package matches new aim/scope
+      - IF both THEN RUN both directions
+    outcome: Package aligned with aims and scope (or blockers listed)
+    decisions:
+      - DECISIONS.md#5-alignment-sweep
+  - id: "5.3.7"
+    title: Maintainer sync (META + WORKFLOW)
+    actions:
+      - DECIDE sync actions per DECISIONS §7
+      - MODIFY WORKFLOW.yaml to mirror current SKILL §5.3
+      - MODIFY META.md tree, References, scripts, Updated as needed
+      - Confirm SKILL does not link META
+    outcome: META.md AND WORKFLOW.yaml correct relative to the post-edit package
+    decisions:
+      - DECISIONS.md#7-maintainer-sync
+  - id: "5.3.8"
+    title: Validate AND complete
+    actions:
+      - RUN §6; IF fail THEN RETURN TO failing step, fix, re-validate
+      - IF pass THEN OUTPUT §7
+    outcome: Validation pass (or blockers) AND completion chat
+    decisions: []

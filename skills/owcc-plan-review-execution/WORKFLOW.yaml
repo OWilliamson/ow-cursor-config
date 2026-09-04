@@ -1,0 +1,114 @@
+skill: owcc-plan-review-execution
+steps:
+  - id: "5.3.1"
+    title: Resolve plan, scope, AND baseline
+    actions:
+      - DECIDE target plan per DECISIONS §1
+      - DECIDE review scope per DECISIONS §2
+      - Infer workspace root
+      - DECIDE git baseline per DECISIONS §3
+      - State path, scope, workspace root, AND baseline IN one line
+    outcome: Absolute plan path, scope, workspace root, baseline stated
+    decisions:
+      - DECISIONS.md#1-target-plan
+      - DECISIONS.md#2-review-scope
+      - DECISIONS.md#3-git-baseline
+  - id: "5.3.2"
+    title: RUN A/M/R inventory assist
+    actions:
+      - RUN plan-amr-inventory.py --json
+      - Parse claimed, unplanned, code_loc, bugbot_default
+      - Note A/M/R gaps as hints; inventory is NOT verdicts
+    outcome: Inventory JSON parsed; A/M/R gaps noted for later judgment
+    decisions:
+      - DECISIONS.md#13-amr-inventory-severity
+  - id: "5.3.3"
+    title: Judge Aims success
+    actions:
+      - READ plan ## Aims before relying on inventory
+      - Compare disk + git to in-scope Aim Results
+      - DECIDE Aims per DECISIONS §5 AND §15
+      - Record Judgment criterion → outcome → why per row
+    outcome: Aims success judgment ready for the report
+    decisions:
+      - DECISIONS.md#5-success-dimensions
+      - DECISIONS.md#15-specified-but-undone
+  - id: "5.3.4"
+    title: Match Target shape
+    actions:
+      - READ plan ## Target shape
+      - IF None or absent THEN n/a ELSE match end-state to disk
+      - DECIDE Target shape per DECISIONS §5
+    outcome: Target shape judgment (or n/a)
+    decisions:
+      - DECISIONS.md#5-success-dimensions
+  - id: "5.3.5"
+    title: Coverage vs Scope
+    actions:
+      - READ plan ## Scope
+      - Judge in-scope coverage AND out-of-scope drift
+      - DECIDE Scope dimension per DECISIONS §5
+    outcome: Scope coverage judgment ready
+    decisions:
+      - DECISIONS.md#5-success-dimensions
+  - id: "5.3.6"
+    title: Stop-if honesty
+    actions:
+      - READ Rules Stop-if
+      - Ask met / ignored / worked around
+      - DECIDE Stop-if dimension per DECISIONS §5
+    outcome: Stop-if judgment ready
+    decisions:
+      - DECISIONS.md#5-success-dimensions
+  - id: "5.3.7"
+    title: Rules, §9, AND bounded workspace rules
+    actions:
+      - READ plan Rules AND Decisions §9 when not None
+      - Check bounded always-on / project rules for touched paths or Scope
+      - DECIDE Rules dimension per DECISIONS §7
+    outcome: Rules/§9 judgment ready
+    decisions:
+      - DECISIONS.md#7-workspace-rules
+  - id: "5.3.8"
+    title: Per-todo correctness
+    actions:
+      - WHILE each todo IN scope judge vs Aim Result / Stages per §6 AND §15
+      - Use disk, diff, A/M/R Content/Change/Reason — not YAML alone
+      - Record Judgment; cite Failure ID when fail/warn
+      - Fill per-todo correctness matrix
+    outcome: Per-todo correctness matrix complete
+    decisions:
+      - DECISIONS.md#6-per-todo-verdict
+      - DECISIONS.md#15-specified-but-undone
+  - id: "5.3.9"
+    title: Bugbot gate AND Security Review
+    actions:
+      - DECIDE Bugbot gate per DECISIONS §8
+      - IF gated on THEN spawn Task bugbot code-only
+      - IF gated off THEN Bugs n/a with skip reason
+      - DECIDE Security Review per DECISIONS §9
+    outcome: Subagent findings recorded or skip reasons noted
+    decisions:
+      - DECISIONS.md#8-bugbot-gate
+      - DECISIONS.md#9-security-review
+  - id: "5.3.10"
+    title: Better-than-start, failures F-ids, overall
+    actions:
+      - DECIDE Better-than-start per DECISIONS §11 (baseline delta only — not Aims or Bugbot)
+      - Assign F-ids; record why AND action needed for each fail/warn
+      - DECIDE overall verdict per DECISIONS §12
+      - Optionally RUN closeout appendix only when operator ask or Plan build complete
+    outcome: Better judgment, enumerated failures, overall verdict set
+    decisions:
+      - DECISIONS.md#11-better-than-start
+      - DECISIONS.md#10-failure-why-and-action
+      - DECISIONS.md#12-overall-verdict
+      - DECISIONS.md#4-closeout-finding-class
+  - id: "5.3.11"
+    title: OUTPUT report (do NOT fix)
+    actions:
+      - OUTPUT chat per RESPONSE.md Success judgments first
+      - Failures with F-ids; A/M/R inventory after subagents
+      - Remediation as recommendations only
+    outcome: Final message matches RESPONSE template
+    decisions: []

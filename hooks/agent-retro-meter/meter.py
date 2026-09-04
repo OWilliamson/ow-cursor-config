@@ -396,14 +396,14 @@ def handle_stop(data: dict[str, Any]) -> dict[str, Any]:
         if nudge_on and not g.get("composer_nudge_sent"):
             reasons_txt = ", ".join(reasons)
             tmpl = ccfg.get("nudge_template") or (
-                "Session retro: thresholds crossed ({reasons}). Run @cursor-session-retro in a new chat; scrub secrets if pasting excerpts."
+                "Session retro: thresholds crossed ({reasons}). Run @owcc-session-retro in a new chat; scrub secrets if pasting excerpts."
             )
             try:
                 msg = tmpl.format(reasons=reasons_txt)
             except (KeyError, ValueError):
                 msg = (
                     f"Session retro: thresholds crossed ({reasons_txt}). "
-                    "Run @cursor-session-retro in a new chat; scrub secrets if pasting excerpts."
+                    "Run @owcc-session-retro in a new chat; scrub secrets if pasting excerpts."
                 )
             out["followup_message"] = msg
             g["composer_nudge_sent"] = True
@@ -494,14 +494,14 @@ def handle_subagent_stop(data: dict[str, Any]) -> dict[str, Any]:
     if nudge_sub:
         reasons_txt = ", ".join(log_line["reasons"])
         tmpl = scfg.get("nudge_template") or (
-            "Subagent run crossed thresholds ({reasons}). Consider @cursor-session-retro with the subagent task summary; scrub secrets."
+            "Subagent run crossed thresholds ({reasons}). Consider @owcc-session-retro with the subagent task summary; scrub secrets."
         )
         try:
             msg = tmpl.format(reasons=reasons_txt)
         except (KeyError, ValueError):
             msg = (
                 f"Subagent run crossed thresholds ({reasons_txt}). "
-                "Consider @cursor-session-retro; scrub secrets."
+                "Consider @owcc-session-retro; scrub secrets."
             )
         out["followup_message"] = msg
 

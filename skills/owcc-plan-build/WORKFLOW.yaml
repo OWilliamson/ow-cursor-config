@@ -1,0 +1,49 @@
+skill: owcc-plan-build
+steps:
+  - id: "5.3.1"
+    title: Preflight and orient
+    actions:
+      - READ validation report per DECISIONS §1; stop on fail
+      - READ frontmatter, Rules, frozen decisions, stop-if
+      - DECIDE intent per DECISIONS §2
+      - Stop if required contract pieces missing
+      - Resolve phase name case-insensitively if named
+    outcome: Preflight pass; intent chosen; scope known
+    decisions:
+      - DECISIONS.md#1-target-and-preflight
+      - DECISIONS.md#2-four-intents
+  - id: "5.3.2"
+    title: Confirm scope
+    actions:
+      - State path, intent, first pending todo in scope
+      - Proceed unless user blocked scope
+    outcome: Scope confirmed
+    decisions: []
+  - id: "5.3.3"
+    title: Per-todo loop
+    actions:
+      - WHILE todos remain apply DECISIONS §4
+      - Respect stop-if
+      - Layer A status-only per DECISIONS §5
+    outcome: Scoped todos advanced or blockers noted
+    decisions:
+      - DECISIONS.md#4-execution-rule
+      - DECISIONS.md#3-two-layers
+      - DECISIONS.md#5-plan-file-discipline
+      - DECISIONS.md#6-conflict-resolution
+  - id: "5.3.4"
+    title: Complete intent closeout
+    actions:
+      - IF not complete THEN SKIP TO 5.3.5
+      - RUN plan-validate-close.py
+      - RUN Final validation; complete audit todos
+      - Set Plan build complete line
+    outcome: Closeout done or blockers reported
+    decisions:
+      - DECISIONS.md#5-plan-file-discipline
+  - id: "5.3.5"
+    title: Report
+    actions:
+      - OUTPUT chat per RESPONSE.md
+    outcome: Operator sees intent, todos, validation, notes
+    decisions: []

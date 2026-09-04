@@ -1,0 +1,47 @@
+skill: owcc-plan-verification-cursor
+steps:
+  - id: "5.3.1"
+    title: Resolve target
+    actions:
+      - DECIDE target per DECISIONS §1
+    outcome: Absolute .plan.md path confirmed cursor-native
+    decisions:
+      - DECISIONS.md#1-target-plan
+  - id: "5.3.2"
+    title: Audit plan text
+    actions:
+      - RUN plan-audit-cursor-verification.py --json
+      - Parse gaps[]
+    outcome: Gap list ready (or already ok true)
+    decisions:
+      - DECISIONS.md#4-audit-vs-runtime-verify
+  - id: "5.3.3"
+    title: Edit plan
+    actions:
+      - DECIDE placement per DECISIONS §2
+      - CREATE or MODIFY closeout todos per OUTPUTS.md
+      - Inject build-agent script paths in todo content
+    outcome: Closeout language present per shape
+    decisions:
+      - DECISIONS.md#2-closeout-placement
+  - id: "5.3.4"
+    title: Validate frontmatter after every write
+    actions:
+      - RUN plan-validate-frontmatter.py
+      - IF fail THEN fix per DECISIONS §3 and re-RUN
+    outcome: Frontmatter validator exit 0
+    decisions:
+      - DECISIONS.md#3-frontmatter-rules
+  - id: "5.3.5"
+    title: Re-audit until gaps clear
+    actions:
+      - WHILE gaps remain RETURN TO 5.3.3 then 5.3.4 then re-RUN audit
+      - Stop when ok true
+    outcome: Audit ok true
+    decisions: []
+  - id: "5.3.6"
+    title: Report
+    actions:
+      - OUTPUT mutation delta per RESPONSE.md
+    outcome: Operator sees what was added or repaired
+    decisions: []

@@ -1,13 +1,38 @@
 # Subagents (`subagents/`)
 
-**What this is:** In Cursor, **subagents** (often exposed as **Task** runs: explore, shell, codex, etc.) are **child agent sessions** with their own context and tool budget. Project folders such as `~/.cursor/subagents/` or `.cursor/subagents/` can hold **definitions, prompts, or pointers** your team uses to standardize those child runs. Cursor’s exact file formats evolve; treat this directory as the **place to version** anything you want checked into git alongside other Cursor config.
+**What this is:** In Cursor, **subagents** (Task runs: `explore`, `shell`, `generalPurpose`, `bugbot`, `security-review`, etc.) are **child agent sessions** with their own context and tool budget. This directory is the place to version prompts or manifests next to commands, rules, and skills.
 
-**This package:** This tree intentionally ships **no** bundled subagent definition files yet—only this README. Add markdown or other supported artifacts here when you define reusable subagent prompts or manifests for your workflow.
+## Canonical delegation skill
+
+Routing, output contracts, chaining, and anti-patterns live in **`/owcc-agent-delegate`**:
+
+- Skill: [../skills/owcc-agent-delegate/SKILL.md](../skills/owcc-agent-delegate/SKILL.md)
+- Reference: [../skills/owcc-agent-delegate/reference-delegation.md](../skills/owcc-agent-delegate/reference-delegation.md)
+
+Use that skill before spawning Task subagents when the return payload would otherwise be long prose.
+
+## Quick routing
+
+| Task | Prefer | Return shape |
+|------|--------|--------------|
+| Locate symbol / callers / usages | `explore` (readonly) | `path:line — symbol — note` |
+| Run build, test, git read-only | `shell` | command + exit + decisive stdout/stderr |
+| ≤2-file edit, path known | Main thread | — |
+| Diff / branch bug scan | `bugbot` | findings list |
+| Security on local changes | `security-review` | full detail for high-severity items |
+| 3+ files or cross-cutting feature | Main thread (+ plan if needed) | — |
 
 ## Contents
 
 | Item | What it does |
 |------|----------------|
-| *(no definition files yet)* | This folder is reserved for **subagent prompts, manifests, or references** you want versioned next to commands/rules/skills. |
+| *(no definition files yet)* | Reserved for **subagent prompts, manifests, or references** you want versioned here. |
 
-When you add files, add one table row per file (or per logical bundle) and a short description of when that subagent should be used.
+When you add files, add one table row per file and note when to use it.
+
+## Related
+
+| Need | Where |
+|------|-------|
+| Which skill or hook fits | `/owcc-tooling-help` |
+| Session retro after heavy runs | `/owcc-session-retro` + `agent-retro-meter` hook |

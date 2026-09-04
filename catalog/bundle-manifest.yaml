@@ -1,27 +1,58 @@
-# Shipped rules and skills for profile install/prune.
-# Regenerate: python3 scripts/generate-bundle-manifest.py
-version: 1
-rules:
-  - diagnose-issues.mdc
-  - external-systems-read-only.mdc
-  - github-and-remotes.mdc
-  - itrs-engineer.mdc
-  - itrs-org-routing.mdc
-  - opsview-context.mdc
-  - technical-why.mdc
-skills:
-  - cursor-compress-context
-  - cursor-convert-ui-rules
-  - cursor-create-identity-rule
-  - cursor-delegate
-  - cursor-improve-rule
-  - cursor-improve-skill
-  - cursor-session-retro
-  - cursor-tooling-help
-  - cursor-validate-rule
-  - cursor-validate-skill
-  - cursor-workflow-review
-  - customer-explanation
-  - repo-cleanup
-  - repo-convention-change
-  - script-review
+# Kit catalog — do not edit by hand
+version: 2
+default_kit: owcc-kit-starter
+bundles:
+  owcc-kit-starter:
+    description: "Core guardrails, delegation, tooling map, identity scaffolding"
+    rules:
+      - external-systems-read-only.mdc
+      - github-and-remotes.mdc
+      - diagnose-issues.mdc
+    skills:
+      - owcc-agent-delegate
+      - owcc-tooling-help
+      - owcc-identity-create-rule
+  owcc-kit-author:
+    description: "Author and audit rules, skills, and workflow policy"
+    rules:
+      - technical-why.mdc
+    skills:
+      - owcc-rule-validate
+      - owcc-rule-improve
+      - owcc-skill-validate
+      - owcc-skill-improve
+      - owcc-context-compress
+      - owcc-ui-convert-rules
+      - owcc-workflow-review
+  owcc-kit-plan:
+    description: "Plan improve, triage, verification, validation report, build, and success review"
+    skills:
+      - owcc-plan-improve
+      - owcc-plan-triage
+      - owcc-plan-verification-cursor
+      - owcc-plan-validation-report
+      - owcc-plan-build
+      - owcc-plan-review-execution
+  owcc-kit-repo:
+    description: "Repository hygiene and convention changes"
+    skills:
+      - owcc-repo-cleanup
+      - owcc-repo-convention-change
+  owcc-kit-dev:
+    description: "Script and small-tooling review"
+    skills:
+      - owcc-script-review
+  owcc-kit-itrs:
+    description: "ITRS / Opsview context and customer explanations"
+    rules:
+      - itrs-engineer.mdc
+      - itrs-org-routing.mdc
+      - opsview-context.mdc
+    skills:
+      - owcc-customer-explanation
+  owcc-kit-session:
+    description: "Session retro, agent problem logging, retro metering hook"
+    skills:
+      - owcc-session-retro
+    hooks:
+      - agent-retro-meter
